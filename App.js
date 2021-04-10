@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let color = document.querySelector('#color-input1').value
     let width = document.querySelector('#strokeWidth-input1').value
     let speed = document.querySelector('#animation-input1').value
+    let size = document.querySelector('#size-input2').value
 
     //variables for canvas & path drawing
     let firstClick = true
@@ -77,6 +78,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             if (speed != '') {
                 animTime = speed
+            }
+            if (size != '') {
+                scribbleSize = size
             }
         }
 
@@ -161,5 +165,57 @@ document.addEventListener('DOMContentLoaded', () => {
         }, animTime * 1000);
     })
 
+    //squiggly creator
+    function createSquiggly(id, startX, startY, width, height, number, up) {
+        let d = `M ${startX} ${startY} `
+        if (up) {
+            d += `Q ${startX + width / 2} ${startY - height}, ${startX + width} ${startY} `
+        } else {
+            d += `Q ${startX + width / 2} ${startY + height}, ${startX + width} ${startY} `
+        }
+        for (let i = 2; i <= number; i++) {
+            d += `T ${startX + width * i} ${startY} `
+        }
+        document.querySelector(id).setAttribute('d', d)
+    }
+
+    //scribble creator
+    function createScribble(id, startX, startY, density, size, width, height) {
+        let d = `M ${startX} ${startY} Q ${startX + 5} ${startY + 5}, ${startX - 5} ${startY} `
+        for (let i = 0; i < density; i++) {
+            d += `T ${startX} ${startY} T ${startX + 5} ${startY + 5} `
+            for (let j = 0; j <= size; j++) {
+                let r = Math.floor(Math.random() * 2)
+                let r2 = Math.floor(Math.random() * 2)
+                let rangeX = j / width
+                let rangeY = j / height
+
+                if (r % 2 === 0) {
+                    randomX = startX + rangeX
+                } else {
+                    randomX = startX - rangeX
+                }
+                if (r2 % 2 === 0) {
+                    randomY = startY + rangeY
+                } else {
+                    randomY = startY - rangeY
+                }
+
+                d += `T ${randomX} ${randomY} `
+            }
+        }
+        document.querySelector(id).setAttribute('d', d)
+        console.log(d)
+    }
+
+    let scribbleSize = 10
+    //add functionality to generate scribble btn
+    document.querySelector('#genNew2').addEventListener('click', () => {
+        if (size != '') {
+            scribbleSize = size
+        }
+        console.log(size)
+        createScribble('#path2', 300, 300, 1, scribbleSize, 4, 4)
+    }) 
     
 })

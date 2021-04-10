@@ -1,7 +1,7 @@
 :root {
-    --main: black;
-    --dark: black;
-    --light: black;
+    --main: rgb(77, 1, 255);
+    --dark: rgb(44, 0, 148);
+    --light: rgb(171, 136, 255);
 }
 
 html{
@@ -18,6 +18,13 @@ body{
     margin: 0;
     padding: 0;
     overflow: hidden;
+}
+
+h3{
+    font-family: inherit;
+    font-size: 1.8rem;
+    color: var(--dark);
+    margin: 1.2rem 0;
 }
 
 input{
@@ -40,9 +47,11 @@ textarea{
     font-size: 1.6rem;
     font-weight: 300;
     padding: 10px 10px;
-    margin: 1rem;
+    margin: 0;
     color: white;
     overflow-y: scroll;
+    width: 95%;
+    height: 150px;
 }
 
 button{
@@ -60,6 +69,28 @@ button{
 }
 button:hover{
     background-color: rgb(236, 227, 255);
+}
+
+.coords-container{
+    margin: 1rem;
+    width: 100%;
+    height: 180px;
+}
+
+.coords-btn-container {
+    display: flex;
+}
+
+.copyCoords{
+    cursor: pointer;
+    position: relative;
+    margin: 0;
+    width: 30px;
+    height: 30px;
+}
+
+.copyLength{
+    cursor: pointer;
 }
 
 .faded{

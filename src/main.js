@@ -10,6 +10,7 @@ class Main extends React.Component {
             <div id="section">
                 <svg className="" id="canvas" width="700" height="500">
                     <Path number="1" color="black" strokeWidth="2" d="" />
+                    <Path number="2" color="black" strokeWidth="1" d="" />
                 </svg>
                 <div id="right-column">
                     <div id="add-btns-container">
@@ -39,12 +40,17 @@ function Layer(props) {
             <button id="hideLayerBtn">Hide Layer</button>
             <button className="remove" id="removeLayerBtn">Remove Layer</button>
             <button id="animateBtn">Animate</button>
-            <button id="copyCoordsBtn">Copy</button>
-            <textarea readOnly id="text-display1" name="paragraph_text" cols="50" rows="10" placeholder="SVG coordinates"></textarea>
+            <div className="coords-container">
+                <div className="coords-btn-container">
+                    <h3>SVG Coordinates</h3>
+                    <button className="copyCoords" id="copyCoordsBtn"><i className="fas fa-copy"></i></button>
+                </div>
+                <textarea readOnly id="text-display1" name="paragraph_text" cols="50" rows="10" ></textarea>
+            </div>
             <input type="text" id="color-input1" placeholder="Color" />
             <input type="number" id="strokeWidth-input1" placeholder="Stroke width" />
             <input type="number" id="animation-input1" placeholder="Animation Speed" />
-            <button className="copyLength" id="copyLengthBtn">Copy</button>
+            <button className="copyLength" id="copyLengthBtn"><i className="far fa-copy"></i></button>
             <input readOnly type = "number" id="strokeLength" placeholder="Stroke Length"/>
         </div>
     )
@@ -57,13 +63,18 @@ function Scribble(props) {
             <button id="hideLayerBtn2">Hide Scribble</button>
             <button className="remove" id="removeLayerBtn2">Remove Scribble</button>
             <button id="animateBtn2">Animate</button>
-            <button id="copyCoordsBtn2">Copy</button>
-            <textarea readOnly id="text-display1" name="paragraph_text2" cols="50" rows="10" placeholder="SVG coordinates"></textarea>
+            <div className="coords-container" >
+                <div className="coords-btn-container">
+                    <h3>SVG Coordinates</h3>
+                    <button className="copyCoords" id="copyCoordsBtn2"><i className="fas fa-copy"></i></button>
+                </div>
+                <textarea readOnly id="text-display1" name="paragraph_text2" cols="50" rows="10"></textarea>
+            </div>
             <input type="text" id="color-input2" placeholder="Color" />
             <input type="number" id="strokeWidth-input2" placeholder="Stroke width" />
             <input type="number" id="animation-input2" placeholder="Animation Speed" />
             <input type="number" id="size-input2" placeholder="Size" />
-            <button className="copyLength" id="copyLengthBtn">Copy</button>
+            <button className="copyLength" id="copyLengthBtn"><i className="far fa-copy"></i></button>
             <input readOnly type = "number" id="strokeLength2" placeholder="Stroke Length"/>
         </div>
     )

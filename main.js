@@ -26,7 +26,8 @@ var Main = function (_React$Component) {
                 React.createElement(
                     "svg",
                     { className: "", id: "canvas", width: "700", height: "500" },
-                    React.createElement(Path, { number: "1", color: "black", strokeWidth: "2", d: "" })
+                    React.createElement(Path, { number: "1", color: "black", strokeWidth: "2", d: "" }),
+                    React.createElement(Path, { number: "2", color: "black", strokeWidth: "1", d: "" })
                 ),
                 React.createElement(
                     "div",
@@ -88,18 +89,31 @@ function Layer(props) {
             "Animate"
         ),
         React.createElement(
-            "button",
-            { id: "copyCoordsBtn" },
-            "Copy"
+            "div",
+            { className: "coords-container" },
+            React.createElement(
+                "div",
+                { className: "coords-btn-container" },
+                React.createElement(
+                    "h3",
+                    null,
+                    "SVG Coordinates"
+                ),
+                React.createElement(
+                    "button",
+                    { className: "copyCoords", id: "copyCoordsBtn" },
+                    React.createElement("i", { className: "fas fa-copy" })
+                )
+            ),
+            React.createElement("textarea", { readOnly: true, id: "text-display1", name: "paragraph_text", cols: "50", rows: "10" })
         ),
-        React.createElement("textarea", { readOnly: true, id: "text-display1", name: "paragraph_text", cols: "50", rows: "10", placeholder: "SVG coordinates" }),
         React.createElement("input", { type: "text", id: "color-input1", placeholder: "Color" }),
         React.createElement("input", { type: "number", id: "strokeWidth-input1", placeholder: "Stroke width" }),
         React.createElement("input", { type: "number", id: "animation-input1", placeholder: "Animation Speed" }),
         React.createElement(
             "button",
             { className: "copyLength", id: "copyLengthBtn" },
-            "Copy"
+            React.createElement("i", { className: "far fa-copy" })
         ),
         React.createElement("input", { readOnly: true, type: "number", id: "strokeLength", placeholder: "Stroke Length" })
     );
@@ -130,11 +144,24 @@ function Scribble(props) {
             "Animate"
         ),
         React.createElement(
-            "button",
-            { id: "copyCoordsBtn2" },
-            "Copy"
+            "div",
+            { className: "coords-container" },
+            React.createElement(
+                "div",
+                { className: "coords-btn-container" },
+                React.createElement(
+                    "h3",
+                    null,
+                    "SVG Coordinates"
+                ),
+                React.createElement(
+                    "button",
+                    { className: "copyCoords", id: "copyCoordsBtn2" },
+                    React.createElement("i", { className: "fas fa-copy" })
+                )
+            ),
+            React.createElement("textarea", { readOnly: true, id: "text-display1", name: "paragraph_text2", cols: "50", rows: "10" })
         ),
-        React.createElement("textarea", { readOnly: true, id: "text-display1", name: "paragraph_text2", cols: "50", rows: "10", placeholder: "SVG coordinates" }),
         React.createElement("input", { type: "text", id: "color-input2", placeholder: "Color" }),
         React.createElement("input", { type: "number", id: "strokeWidth-input2", placeholder: "Stroke width" }),
         React.createElement("input", { type: "number", id: "animation-input2", placeholder: "Animation Speed" }),
@@ -142,7 +169,7 @@ function Scribble(props) {
         React.createElement(
             "button",
             { className: "copyLength", id: "copyLengthBtn" },
-            "Copy"
+            React.createElement("i", { className: "far fa-copy" })
         ),
         React.createElement("input", { readOnly: true, type: "number", id: "strokeLength2", placeholder: "Stroke Length" })
     );
