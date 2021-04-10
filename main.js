@@ -30,9 +30,27 @@ var Main = function (_React$Component) {
                 ),
                 React.createElement(
                     "div",
-                    { id: "layers-container" },
-                    React.createElement(Layer, null),
-                    React.createElement(Scribble, null)
+                    { id: "right-column" },
+                    React.createElement(
+                        "div",
+                        { id: "add-btns-container" },
+                        React.createElement(
+                            "button",
+                            { id: "addLayerBtn" },
+                            "Add Layer"
+                        ),
+                        React.createElement(
+                            "button",
+                            { id: "addScribbleBtn" },
+                            "Add Scribble"
+                        )
+                    ),
+                    React.createElement(
+                        "div",
+                        { id: "layers-container" },
+                        React.createElement(Layer, { number: "1" }),
+                        React.createElement(Scribble, { number: "1" })
+                    )
                 )
             );
         }
@@ -42,13 +60,13 @@ var Main = function (_React$Component) {
 }(React.Component);
 
 function Path(props) {
-    return React.createElement("path", { id: "path" + props.number, "class": "draw", stroke: props.color, strokeLinecap: "round", strokeWidth: props.strokeWidth, fill: "transparent", d: props.d });
+    return React.createElement("path", { id: "path" + props.number, className: "draw", stroke: props.color, strokeLinecap: "round", strokeWidth: props.strokeWidth, fill: "transparent", d: props.d });
 }
 
 function Layer(props) {
     return React.createElement(
         "div",
-        { id: "layer1", className: "layer" },
+        { id: "layer" + props.number, className: "layer" },
         React.createElement(
             "button",
             { id: "removeLayerBtn" },
@@ -79,18 +97,18 @@ function Layer(props) {
             { id: "restartBtn" },
             "Restart"
         ),
-        React.createElement("textarea", { id: "text-display1", name: "paragraph_text", cols: "50", rows: "10", placeholder: "SVG coordinates" }),
+        React.createElement("textarea", { readOnly: true, id: "text-display1", name: "paragraph_text", cols: "50", rows: "10", placeholder: "SVG coordinates" }),
         React.createElement("input", { type: "text", id: "color-input1", placeholder: "Color" }),
         React.createElement("input", { type: "number", id: "strokeWidth-input1", placeholder: "Stroke width" }),
         React.createElement("input", { type: "number", id: "animation-input1", placeholder: "Animation Speed" }),
-        React.createElement("input", { type: "number", id: "strokeLength", placeholder: "Stroke Length" })
+        React.createElement("input", { readOnly: true, type: "number", id: "strokeLength", placeholder: "Stroke Length" })
     );
 }
 
 function Scribble(props) {
     return React.createElement(
         "div",
-        { id: "scribble1", className: "layer" },
+        { id: "scribble" + props.number, className: "layer" },
         React.createElement(
             "button",
             { id: "removeLayerBtn2" },
@@ -116,12 +134,12 @@ function Scribble(props) {
             { id: "genNew2" },
             "Generate New Scribble"
         ),
-        React.createElement("textarea", { id: "text-display1", name: "paragraph_text2", cols: "50", rows: "10", placeholder: "SVG coordinates" }),
+        React.createElement("textarea", { readOnly: true, id: "text-display1", name: "paragraph_text2", cols: "50", rows: "10", placeholder: "SVG coordinates" }),
         React.createElement("input", { type: "text", id: "color-input2", placeholder: "Color" }),
         React.createElement("input", { type: "number", id: "strokeWidth-input2", placeholder: "Stroke width" }),
         React.createElement("input", { type: "number", id: "animation-input2", placeholder: "Animation Speed" }),
         React.createElement("input", { type: "number", id: "size-input2", placeholder: "Size" }),
-        React.createElement("input", { type: "number", id: "strokeLength2", placeholder: "Stroke Length" })
+        React.createElement("input", { readOnly: true, type: "number", id: "strokeLength2", placeholder: "Stroke Length" })
     );
 }
 

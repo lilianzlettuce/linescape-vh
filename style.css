@@ -42,6 +42,7 @@ textarea{
     padding: 10px 10px;
     margin: 1rem;
     color: white;
+    overflow-y: scroll;
 }
 
 button{
@@ -62,22 +63,43 @@ button{
     height: 100vh;
     display: flex;
     flex-direction: row;
-    padding: 50px;
+    padding: 0px;
     align-items: flex-start;
     justify-content: space-between;
 }
 
 #canvas{
-    border-radius: 5px;
+    border-radius: 10px;
     box-shadow: 0px 5px 15px rgba(128, 128, 128, 0.719);
-    margin-right: 50px;
+    margin: 50px;
     width: 60%;
 }
 
-#layers-container{
+#right-column{
     width: 40%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+#add-btns-container{
+    padding: 10px;
+}
+
+#layers-container{
+    width: 100%;
+    height: 95%;
     overflow-y: scroll;
+    padding: 10px;
+}
+
+.layer{
+    box-shadow: 0px 5px 10px rgba(128, 128, 128, 0.719);
+    padding: 10px;
+    margin: 10px 5px;
+    border-radius: 5px;
 }
 
 .draw{
@@ -93,3 +115,4 @@ button{
         stroke-dashoffset: 0;
     }
 }
+
