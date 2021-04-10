@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let color = document.querySelector('#color-input1').value
     let width = document.querySelector('#strokeWidth-input1').value
     let speed = document.querySelector('#animation-input1').value
-    let size = document.querySelector('#size-input2').value
+    let size = document.querySelector('#size-input1').value
 
     //update values
     function updateVals() {
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         color = document.querySelector('#color-input1').value
         width = document.querySelector('#strokeWidth-input1').value
         speed = document.querySelector('#animation-input1').value
-        size = document.querySelector('#size-input2').value
+        size = document.querySelector('#size-input1').value
         length = path.getTotalLength();
     }
 
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //key pressed
     document.addEventListener('keydown', (e) => {
 
-        if(numLines > 0 && e.code === 'Backspace') {    //undo
+        if(numLines > 0 && e.key === 'z' && e.ctrlKey) {    //undo
             let index = getIndexQ()
             path.setAttribute('d', `${d.substring(0, index)} `)
             if (!down) {
@@ -135,6 +135,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         if (width != '') {
             path.style.strokeWidth = width
+        }
+    })
+
+    //temporarily hide
+    let hide = document.querySelector('#hideBtn1')
+    let hideClicked = false
+    hide.addEventListener('click', () => {
+        if (!hideClicked) {
+            path.style.opacity = '0%'
+            hide.style.backgroundColor = 'rgb(92, 92, 92)'
+            hide.style.color = 'white'
+            hideClicked = true
+        } else {
+            path.style.opacity = '100%'
+            hide.style.backgroundColor = 'white'
+            hide.style.color = 'rgb(92, 92, 92)'
+            hideClicked = false
         }
     })
 
@@ -225,13 +242,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let scribbleSize = 70
     //add functionality to generate scribble btn
-    document.querySelector('#genNew2').addEventListener('click', () => {
+    document.querySelector('#genNewBtn1').addEventListener('click', () => {
         updateVals()
         if (size != '') {
             scribbleSize = size
         }
         console.log(size)
-        createScribble('#s-path1', 300, 300, 1, scribbleSize, 4, 4)
+        createScribble('#path1', 450, 300, 1, scribbleSize, 4, 4)
     }) 
     
 })

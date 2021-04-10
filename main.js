@@ -17,50 +17,79 @@ var Main = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).call(this, props));
 
         _this.state = {
-            items: [],
+            layers: [{
+                number: 1,
+                d: ''
+            }],
             numLayers: 1,
-            numScribbles: 1
+            saved: [],
+            numSaved: 0
         };
+        _this.addLayer = _this.addLayer.bind(_this);
         return _this;
     }
 
     _createClass(Main, [{
-        key: "render",
+        key: 'render',
         value: function render() {
             return React.createElement(
-                "div",
+                'div',
                 null,
                 React.createElement(
-                    "svg",
-                    { className: "", id: "canvas", width: "700", height: "500" },
-                    React.createElement(Path, { s: "", number: "1", color: "black", strokeWidth: "2", d: "" }),
-                    React.createElement(Path, { s: "s-", number: "1", color: "black", strokeWidth: "1", d: "" })
+                    'svg',
+                    { className: '', id: 'canvas', width: '700', height: '500' },
+                    React.createElement(Path, { number: '1', color: 'black', strokeWidth: '2', d: '' })
                 ),
                 React.createElement(
-                    "div",
-                    { id: "section" },
-                    React.createElement("div", { id: "filler" }),
+                    'div',
+                    { id: 'section' },
+                    React.createElement('div', { id: 'filler' }),
                     React.createElement(
-                        "div",
-                        { id: "right-column" },
+                        'div',
+                        { id: 'right-column' },
                         React.createElement(
-                            "div",
-                            { id: "add-btns-container" },
+                            'div',
+                            { id: 'col-header' },
                             React.createElement(
-                                "button",
-                                { id: "addLayerBtn" },
-                                "Add Layer"
+                                'button',
+                                { id: 'addLayerBtn', onClick: this.addLayer },
+                                'Add Layer'
                             ),
                             React.createElement(
-                                "button",
-                                { id: "addScribbleBtn" },
-                                "Add Scribble"
+                                'div',
+                                null,
+                                React.createElement(
+                                    'button',
+                                    { className: 'tab clicked', id: 'layers-tab' },
+                                    'Layers'
+                                ),
+                                React.createElement(
+                                    'button',
+                                    { className: 'tab', id: 'saved-tab' },
+                                    'Saved'
+                                )
                             )
                         ),
-                        React.createElement(List, { items: this.state.items, numL: this.state.numLayers, numS: this.state.numScribbles })
+                        React.createElement(List, { layers: this.state.layers })
                     )
                 )
             );
+        }
+    }, {
+        key: 'addLayer',
+        value: function addLayer() {
+            var newLayer = {
+                number: this.state.numLayers + 1,
+                d: ''
+            };
+            this.setState(function (state) {
+                return {
+                    layers: state.layers.concat(newLayer),
+                    numLayers: state.numLayers + 1
+                };
+            });
+            console.log(this.state.numLayers);
+            console.log(this.state.layers);
         }
     }]);
 
@@ -68,97 +97,112 @@ var Main = function (_React$Component) {
 }(React.Component);
 
 function Path(props) {
-    return React.createElement("path", { id: props.s + "path" + props.number, className: "draw", stroke: props.color, strokeLinecap: "round", strokeWidth: props.strokeWidth, fill: "transparent", d: props.d });
+    return React.createElement('path', { id: "path" + props.number, className: 'draw', stroke: props.color, strokeLinecap: 'round', strokeWidth: props.strokeWidth, fill: 'transparent', d: props.d });
 }
 
 function List(props) {
     return React.createElement(
-        "div",
-        { id: "layers-container" },
-        React.createElement(Layer, { number: props.numL }),
-        React.createElement(Scribble, { number: props.numS })
+        'div',
+        { id: 'layers-container' },
+        props.layers.map(function (layer) {
+            return React.createElement(Layer, { key: "layer" + layer.number, number: layer.number });
+        })
     );
 }
 
 function Layer(props) {
     return React.createElement(
-        "div",
-        { id: "layer" + props.number, className: "layer" },
+        'div',
+        { id: "layer" + props.number, className: 'layer' },
         React.createElement(
-            "div",
-            { className: "btn-box" },
+            'div',
+            { className: 'btn-box' },
             React.createElement(
-                "button",
-                { className: "reset", id: "resetBtn" + props.number },
-                "Reset"
+                'button',
+                { className: 'reset', id: "resetBtn" + props.number },
+                'Reset'
             ),
             React.createElement(
-                "button",
-                { className: "animate", id: "animateBtn" + props.number },
-                "Animate"
+                'button',
+                { className: 'animate', id: "animateBtn" + props.number },
+                'Animate'
             ),
             React.createElement(
-                "button",
-                { className: "hide", id: "hideLayerBtn" + props.number },
-                "Hide"
+                'button',
+                { className: 'hide', id: "hideBtn" + props.number },
+                'Hide'
             ),
             React.createElement(
-                "button",
-                { className: "hide", id: "saveLayerBtn" + props.number },
-                "Save"
-            ),
-            React.createElement(
-                "button",
-                { className: "remove", id: "removeLayerBtn" + props.number },
-                "Remove"
+                'button',
+                { className: 'remove', id: "removeBtn" + props.number },
+                'Remove'
             )
         ),
         React.createElement(
-            "h2",
-            null,
-            "Layer #",
-            props.number
-        ),
-        React.createElement("input", { type: "text", id: "color-input1", placeholder: "Color" }),
-        React.createElement("input", { type: "number", id: "strokeWidth-input1", placeholder: "Stroke width" }),
-        React.createElement("input", { type: "number", id: "animation-input1", placeholder: "Animation Speed" }),
-        React.createElement(
-            "div",
-            { className: "length-container" },
+            'div',
+            { className: 'btn-box' },
             React.createElement(
-                "div",
-                { className: "length-heading" },
+                'h2',
+                null,
+                'Layer #',
+                props.number
+            ),
+            React.createElement(
+                'div',
+                null,
                 React.createElement(
-                    "h3",
-                    null,
-                    "Stroke Length"
+                    'button',
+                    { className: 'save', id: "saveLayerBtn" + props.number },
+                    'Save'
                 ),
                 React.createElement(
-                    "button",
-                    { className: "copyLength", id: "copyLengthBtn" },
-                    React.createElement("i", { className: "far fa-copy" })
+                    'button',
+                    { className: 'genNew', id: "genNewBtn" + props.number },
+                    'New Scribble'
                 )
-            ),
-            React.createElement("input", { readOnly: true, type: "number", id: "strokeLength", className: "length-input" })
+            )
         ),
+        React.createElement('input', { type: 'text', id: 'color-input1', placeholder: 'Color' }),
+        React.createElement('input', { type: 'number', id: 'strokeWidth-input1', placeholder: 'Stroke width' }),
+        React.createElement('input', { type: 'number', id: 'animation-input1', placeholder: 'Animation Speed' }),
+        React.createElement('input', { type: 'number', id: 'size-input1', placeholder: 'Scribble size' }),
         React.createElement(
-            "div",
-            { className: "coords-container" },
+            'div',
+            { className: 'length-container' },
             React.createElement(
-                "div",
-                { className: "coords-heading" },
+                'div',
+                { className: 'length-heading' },
                 React.createElement(
-                    "h3",
+                    'h3',
                     null,
-                    "SVG Coordinates"
+                    'Stroke Length'
                 ),
                 React.createElement(
-                    "button",
-                    { className: "copyCoords", id: "copyCoordsBtn" },
-                    React.createElement("i", { className: "fas fa-copy" })
+                    'button',
+                    { className: 'copyLength', id: 'copyLengthBtn' },
+                    React.createElement('i', { className: 'far fa-copy' })
                 )
             ),
-            React.createElement("textarea", { readOnly: true, id: "text-display1", name: "paragraph_text", cols: "50", rows: "10" })
+            React.createElement('input', { readOnly: true, type: 'number', id: 'strokeLength', className: 'length-input' })
+        ),
+        React.createElement(
+            'div',
+            { className: 'coords-container' },
+            React.createElement(
+                'div',
+                { className: 'coords-heading' },
+                React.createElement(
+                    'h3',
+                    null,
+                    'SVG Coordinates'
+                ),
+                React.createElement(
+                    'button',
+                    { className: 'copyCoords', id: 'copyCoordsBtn' },
+                    React.createElement('i', { className: 'fas fa-copy' })
+                )
+            ),
+            React.createElement('textarea', { id: 'text-display1', name: 'paragraph_text', cols: '50', rows: '10' })
         )
     );
 }

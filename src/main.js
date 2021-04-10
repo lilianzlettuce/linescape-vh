@@ -4,45 +4,72 @@ class Main extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            items: [],
+            layers: [
+                {
+                    number: 1,
+                    d: '',
+                },
+            ],
             numLayers: 1,
-            numScribbles: 1,
+            saved: [
+
+            ],
+            numSaved: 0,
         }
+        this.addLayer = this.addLayer.bind(this)
     }
 
     render() {
         return (
             <div>
                 <svg className="" id="canvas" width="700" height="500">
-                    <Path s="" number="1" color="black" strokeWidth="2" d="" />
-                    <Path s="s-" number="1" color="black" strokeWidth="1" d="" />
+                    <Path number="1" color="black" strokeWidth="2" d="" />
                 </svg>
                 <div id="section">
                     <div id="filler"></div>
                     <div id="right-column">
-                        <div id="add-btns-container">
-                            <button id="addLayerBtn">Add Layer</button>
-                            <button id="addScribbleBtn">Add Scribble</button>
+                        <div id="col-header">
+                            <button id="addLayerBtn" onClick={this.addLayer}>Add Layer</button>
+                            <div>
+                                <button className="tab clicked" id="layers-tab">Layers</button>
+                                <button className="tab" id="saved-tab">Saved</button>
+                            </div>
                         </div>
-                        <List items={this.state.items} numL={this.state.numLayers} numS={this.state.numScribbles} />
+                        <List layers={this.state.layers} />
                     </div>
                 </div>
             </div>
         )
     }
+
+    addLayer() {
+        const newLayer = {
+            number: this.state.numLayers + 1,
+            d: ''
+        }
+        this.setState(state => ({
+            layers: state.layers.concat(newLayer),
+            numLayers: state.numLayers + 1
+        }))
+        console.log(this.state.numLayers)
+        console.log(this.state.layers)
+    }
+
 }
+
 
 function Path(props) {
     return (
-        <path id={props.s + "path" + props.number} className="draw" stroke={props.color} strokeLinecap="round" strokeWidth={props.strokeWidth} fill="transparent" d={props.d} />
+        <path id={"path" + props.number} className="draw" stroke={props.color} strokeLinecap="round" strokeWidth={props.strokeWidth} fill="transparent" d={props.d} />
     )
 }
 
 function List(props) {
     return (
         <div id="layers-container">
-            <Layer number={props.numL} />
-            <Scribble number={props.numS} />
+            {props.layers.map(layer => (
+                <Layer key={"layer" + layer.number} number={layer.number} />
+            ))}
         </div>
     )
 }
@@ -53,14 +80,22 @@ function Layer(props) {
             <div className="btn-box">
                 <button className="reset" id={"resetBtn" + props.number}>Reset</button>
                 <button className="animate" id={"animateBtn" + props.number}>Animate</button>
-                <button className="hide" id={"hideLayerBtn" + props.number}>Hide</button>
-                <button className="hide" id={"saveLayerBtn" + props.number}>Save</button>
-                <button className="remove" id={"removeLayerBtn" + props.number}>Remove</button>
+                <button className="hide" id={"hideBtn" + props.number}>Hide</button>
+                <button className="remove" id={"removeBtn" + props.number}>Remove</button>
             </div>
-            <h2>Layer #{props.number}</h2>
+            <div className="btn-box">
+                <h2>Layer #{props.number}</h2>
+                <div>
+                    <button className="save" id={"saveLayerBtn" + props.number}>Save</button>
+                    <button className="genNew" id={"genNewBtn" + props.number}>New Scribble</button>
+                </div>
+            </div>
+
             <input type="text" id="color-input1" placeholder="Color" />
             <input type="number" id="strokeWidth-input1" placeholder="Stroke width" />
             <input type="number" id="animation-input1" placeholder="Animation Speed" />
+            <input type="number" id="size-input1" placeholder="Scribble size" />
+
             <div className="length-container">
                 <div className="length-heading">
                     <h3>Stroke Length</h3>
@@ -68,12 +103,13 @@ function Layer(props) {
                 </div>
                 <input readOnly type = "number" id="strokeLength" className="length-input" />
             </div>
+
             <div className="coords-container">
                 <div className="coords-heading">
                     <h3>SVG Coordinates</h3>
                     <button className="copyCoords" id="copyCoordsBtn"><i className="fas fa-copy"></i></button>
                 </div>
-                <textarea readOnly id="text-display1" name="paragraph_text" cols="50" rows="10" ></textarea>
+                <textarea id="text-display1" name="paragraph_text" cols="50" rows="10" ></textarea>
             </div>
         </div>
     )
