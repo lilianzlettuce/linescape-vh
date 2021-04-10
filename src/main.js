@@ -9,9 +9,12 @@ class Main extends React.Component {
         return (
             <div id="section">
                 <svg className="" id="canvas" width="700" height="500">
-                    <Path id="path1" color="black" strokeWidth="2" d="" />
+                    <Path number="1" color="black" strokeWidth="2" d="" />
                 </svg>
-                <div id="layers-container"></div>
+                <div id="layers-container">
+                    <Layer />
+                    <Scribble />
+                </div>
             </div>
         )
     }
@@ -19,9 +22,7 @@ class Main extends React.Component {
 
 function Path(props) {
     return (
-        <div>
-            <path id={props.id} stroke={props.color} strokeLinecap="round" strokeWidth={props.strokeWidth} fill="transparent" d={props.d} />
-        </div>
+        <path id={"path" + props.number} class="draw" stroke={props.color} strokeLinecap="round" strokeWidth={props.strokeWidth} fill="transparent" d={props.d} />
     )
 }
 

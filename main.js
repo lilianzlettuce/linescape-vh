@@ -26,9 +26,14 @@ var Main = function (_React$Component) {
                 React.createElement(
                     "svg",
                     { className: "", id: "canvas", width: "700", height: "500" },
-                    React.createElement(Path, { id: "path1", color: "black", strokeWidth: "2", d: "" })
+                    React.createElement(Path, { number: "1", color: "black", strokeWidth: "2", d: "" })
                 ),
-                React.createElement("div", { id: "layers-container" })
+                React.createElement(
+                    "div",
+                    { id: "layers-container" },
+                    React.createElement(Layer, null),
+                    React.createElement(Scribble, null)
+                )
             );
         }
     }]);
@@ -37,11 +42,7 @@ var Main = function (_React$Component) {
 }(React.Component);
 
 function Path(props) {
-    return React.createElement(
-        "div",
-        null,
-        React.createElement("path", { id: props.id, stroke: props.color, strokeLinecap: "round", strokeWidth: props.strokeWidth, fill: "transparent", d: props.d })
-    );
+    return React.createElement("path", { id: "path" + props.number, "class": "draw", stroke: props.color, strokeLinecap: "round", strokeWidth: props.strokeWidth, fill: "transparent", d: props.d });
 }
 
 function Layer(props) {

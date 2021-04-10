@@ -60,6 +60,42 @@ document.addEventListener('DOMContentLoaded', () => {
         } 
     })
 
+    //get index of the last comma
+    function getIndexComma() {
+        for (let i = d.length - 1; i >= 0; i--) {
+            if (d.substring(i, i + 1) === ',') {
+                return i
+            }
+        }
+        return 0
+    }
 
+    //get index of last Q
+    function getIndexQ() {
+        for (let i = d.length - 1; i >= 0; i--) {
+            if (d.substring(i, i + 1) === 'Q') {
+                return i
+            }
+        }
+        return 0
+    }
+
+    document.querySelector('#restartBtn').addEventListener('click', () => {
+        firstClick = true
+        numLines = 0
+        down = false
+        text.value = ''
+        lengthText.value = ''
+        path.setAttribute('d', '')
+    })
+
+    document.querySelector('#copyCoordsBtn').addEventListener('click', () => {
+        text.select();
+        document.execCommand("copy");
+    })
+    document.querySelector('#copyLengthBtn').addEventListener('click', () => {
+        lengthText.select();
+        document.execCommand("copy");
+    })
     
 })
