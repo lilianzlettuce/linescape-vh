@@ -35,16 +35,16 @@ function Path(props) {
 function Layer(props) {
     return (
         <div id={"layer" + props.number} className="layer">
-            <button class="remove" id="removeLayerBtn">Remove Layer</button>
+            <button id="restartBtn">Reset</button>
             <button id="hideLayerBtn">Hide Layer</button>
+            <button className="remove" id="removeLayerBtn">Remove Layer</button>
             <button id="animateBtn">Animate</button>
             <button id="copyCoordsBtn">Copy</button>
-            <button id="copyLengthBtn">Copy</button>
-            <button id="restartBtn">Reset</button>
             <textarea readOnly id="text-display1" name="paragraph_text" cols="50" rows="10" placeholder="SVG coordinates"></textarea>
             <input type="text" id="color-input1" placeholder="Color" />
             <input type="number" id="strokeWidth-input1" placeholder="Stroke width" />
             <input type="number" id="animation-input1" placeholder="Animation Speed" />
+            <button className="copyLength" id="copyLengthBtn">Copy</button>
             <input readOnly type = "number" id="strokeLength" placeholder="Stroke Length"/>
         </div>
     )
@@ -53,16 +53,17 @@ function Layer(props) {
 function Scribble(props) {
     return (
         <div id={"scribble" + props.number} className="layer">
-            <button class="remove" id="removeLayerBtn2">Remove Scribble</button>
+            <button id="genNew2">Generate New Scribble</button>
             <button id="hideLayerBtn2">Hide Scribble</button>
+            <button className="remove" id="removeLayerBtn2">Remove Scribble</button>
             <button id="animateBtn2">Animate</button>
             <button id="copyCoordsBtn2">Copy</button>
-            <button id="genNew2">Generate New Scribble</button>
             <textarea readOnly id="text-display1" name="paragraph_text2" cols="50" rows="10" placeholder="SVG coordinates"></textarea>
             <input type="text" id="color-input2" placeholder="Color" />
             <input type="number" id="strokeWidth-input2" placeholder="Stroke width" />
             <input type="number" id="animation-input2" placeholder="Animation Speed" />
             <input type="number" id="size-input2" placeholder="Size" />
+            <button className="copyLength" id="copyLengthBtn">Copy</button>
             <input readOnly type = "number" id="strokeLength2" placeholder="Stroke Length"/>
         </div>
     )

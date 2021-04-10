@@ -69,13 +69,18 @@ function Layer(props) {
         { id: "layer" + props.number, className: "layer" },
         React.createElement(
             "button",
-            { "class": "remove", id: "removeLayerBtn" },
-            "Remove Layer"
+            { id: "restartBtn" },
+            "Reset"
         ),
         React.createElement(
             "button",
             { id: "hideLayerBtn" },
             "Hide Layer"
+        ),
+        React.createElement(
+            "button",
+            { className: "remove", id: "removeLayerBtn" },
+            "Remove Layer"
         ),
         React.createElement(
             "button",
@@ -87,20 +92,15 @@ function Layer(props) {
             { id: "copyCoordsBtn" },
             "Copy"
         ),
-        React.createElement(
-            "button",
-            { id: "copyLengthBtn" },
-            "Copy"
-        ),
-        React.createElement(
-            "button",
-            { id: "restartBtn" },
-            "Reset"
-        ),
         React.createElement("textarea", { readOnly: true, id: "text-display1", name: "paragraph_text", cols: "50", rows: "10", placeholder: "SVG coordinates" }),
         React.createElement("input", { type: "text", id: "color-input1", placeholder: "Color" }),
         React.createElement("input", { type: "number", id: "strokeWidth-input1", placeholder: "Stroke width" }),
         React.createElement("input", { type: "number", id: "animation-input1", placeholder: "Animation Speed" }),
+        React.createElement(
+            "button",
+            { className: "copyLength", id: "copyLengthBtn" },
+            "Copy"
+        ),
         React.createElement("input", { readOnly: true, type: "number", id: "strokeLength", placeholder: "Stroke Length" })
     );
 }
@@ -111,13 +111,18 @@ function Scribble(props) {
         { id: "scribble" + props.number, className: "layer" },
         React.createElement(
             "button",
-            { "class": "remove", id: "removeLayerBtn2" },
-            "Remove Scribble"
+            { id: "genNew2" },
+            "Generate New Scribble"
         ),
         React.createElement(
             "button",
             { id: "hideLayerBtn2" },
             "Hide Scribble"
+        ),
+        React.createElement(
+            "button",
+            { className: "remove", id: "removeLayerBtn2" },
+            "Remove Scribble"
         ),
         React.createElement(
             "button",
@@ -129,16 +134,16 @@ function Scribble(props) {
             { id: "copyCoordsBtn2" },
             "Copy"
         ),
-        React.createElement(
-            "button",
-            { id: "genNew2" },
-            "Generate New Scribble"
-        ),
         React.createElement("textarea", { readOnly: true, id: "text-display1", name: "paragraph_text2", cols: "50", rows: "10", placeholder: "SVG coordinates" }),
         React.createElement("input", { type: "text", id: "color-input2", placeholder: "Color" }),
         React.createElement("input", { type: "number", id: "strokeWidth-input2", placeholder: "Stroke width" }),
         React.createElement("input", { type: "number", id: "animation-input2", placeholder: "Animation Speed" }),
         React.createElement("input", { type: "number", id: "size-input2", placeholder: "Size" }),
+        React.createElement(
+            "button",
+            { className: "copyLength", id: "copyLengthBtn" },
+            "Copy"
+        ),
         React.createElement("input", { readOnly: true, type: "number", id: "strokeLength2", placeholder: "Stroke Length" })
     );
 }
