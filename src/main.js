@@ -3,14 +3,19 @@
 class Main extends React.Component {
     constructor(props) {
         super(props)
+        this.state = {
+            items: [],
+            numLayers: 1,
+            numScribbles: 1,
+        }
     }
 
     render() {
         return (
             <div>
                 <svg className="" id="canvas" width="700" height="500">
-                    <Path number="1" color="black" strokeWidth="2" d="" />
-                    <Path number="2" color="black" strokeWidth="1" d="" />
+                    <Path s="" number="1" color="black" strokeWidth="2" d="" />
+                    <Path s="s-" number="1" color="black" strokeWidth="1" d="" />
                 </svg>
                 <div id="section">
                     <div id="filler"></div>
@@ -19,10 +24,7 @@ class Main extends React.Component {
                             <button id="addLayerBtn">Add Layer</button>
                             <button id="addScribbleBtn">Add Scribble</button>
                         </div>
-                        <div id="layers-container">
-                            <Layer number="1" />
-                            <Scribble number="1" />
-                        </div>
+                        <List items={this.state.items} numL={this.state.numLayers} numS={this.state.numScribbles} />
                     </div>
                 </div>
             </div>
@@ -32,17 +34,26 @@ class Main extends React.Component {
 
 function Path(props) {
     return (
-        <path id={"path" + props.number} className="draw" stroke={props.color} strokeLinecap="round" strokeWidth={props.strokeWidth} fill="transparent" d={props.d} />
+        <path id={props.s + "path" + props.number} className="draw" stroke={props.color} strokeLinecap="round" strokeWidth={props.strokeWidth} fill="transparent" d={props.d} />
+    )
+}
+
+function List(props) {
+    return (
+        <div id="layers-container">
+            <Layer number={props.numL} />
+            <Scribble number={props.numS} />
+        </div>
     )
 }
 
 function Layer(props) {
     return (
         <div id={"layer" + props.number} className="layer">
-            <button id="restartBtn1">Reset</button>
-            <button id="animateBtn1">Animate</button>
-            <button id="hideLayerBtn">Hide Layer</button>
-            <button className="remove" id="removeLayerBtn">Remove Layer</button>
+            <button className="reset" id={"resetBtn" + props.number}>Reset</button>
+            <button className="animate" id={"animateBtn" + props.number}>Animate</button>
+            <button className="hide" id={"hideLayerBtn" + props.number}>Hide Layer</button>
+            <button className="remove" id={"removeLayerBtn" + props.number}>Remove Layer</button>
             <h2>Layer #{props.number}</h2>
             <input type="text" id="color-input1" placeholder="Color" />
             <input type="number" id="strokeWidth-input1" placeholder="Stroke width" />
@@ -93,6 +104,13 @@ function Scribble(props) {
         </div>
     )
 }
+
+
+
+
+
+
+
 
 const domContainer = document.querySelector('#main')
 ReactDOM.render(<Main />, domContainer)

@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     //erase all path
-    document.querySelector('#restartBtn1').addEventListener('click', () => {
+    document.querySelector('#resetBtn1').addEventListener('click', () => {
         firstClick = true
         numLines = 0
         down = false
@@ -231,7 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
             scribbleSize = size
         }
         console.log(size)
-        createScribble('#path2', 300, 300, 1, scribbleSize, 4, 4)
+        createScribble('#s-path1', 300, 300, 1, scribbleSize, 4, 4)
     }) 
     
 })

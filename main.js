@@ -14,7 +14,14 @@ var Main = function (_React$Component) {
     function Main(props) {
         _classCallCheck(this, Main);
 
-        return _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).call(this, props));
+
+        _this.state = {
+            items: [],
+            numLayers: 1,
+            numScribbles: 1
+        };
+        return _this;
     }
 
     _createClass(Main, [{
@@ -26,8 +33,8 @@ var Main = function (_React$Component) {
                 React.createElement(
                     "svg",
                     { className: "", id: "canvas", width: "700", height: "500" },
-                    React.createElement(Path, { number: "1", color: "black", strokeWidth: "2", d: "" }),
-                    React.createElement(Path, { number: "2", color: "black", strokeWidth: "1", d: "" })
+                    React.createElement(Path, { s: "", number: "1", color: "black", strokeWidth: "2", d: "" }),
+                    React.createElement(Path, { s: "s-", number: "1", color: "black", strokeWidth: "1", d: "" })
                 ),
                 React.createElement(
                     "div",
@@ -50,12 +57,7 @@ var Main = function (_React$Component) {
                                 "Add Scribble"
                             )
                         ),
-                        React.createElement(
-                            "div",
-                            { id: "layers-container" },
-                            React.createElement(Layer, { number: "1" }),
-                            React.createElement(Scribble, { number: "1" })
-                        )
+                        React.createElement(List, { items: this.state.items, numL: this.state.numLayers, numS: this.state.numScribbles })
                     )
                 )
             );
@@ -66,7 +68,16 @@ var Main = function (_React$Component) {
 }(React.Component);
 
 function Path(props) {
-    return React.createElement("path", { id: "path" + props.number, className: "draw", stroke: props.color, strokeLinecap: "round", strokeWidth: props.strokeWidth, fill: "transparent", d: props.d });
+    return React.createElement("path", { id: props.s + "path" + props.number, className: "draw", stroke: props.color, strokeLinecap: "round", strokeWidth: props.strokeWidth, fill: "transparent", d: props.d });
+}
+
+function List(props) {
+    return React.createElement(
+        "div",
+        { id: "layers-container" },
+        React.createElement(Layer, { number: props.numL }),
+        React.createElement(Scribble, { number: props.numS })
+    );
 }
 
 function Layer(props) {
@@ -75,22 +86,22 @@ function Layer(props) {
         { id: "layer" + props.number, className: "layer" },
         React.createElement(
             "button",
-            { id: "restartBtn1" },
+            { className: "reset", id: "resetBtn" + props.number },
             "Reset"
         ),
         React.createElement(
             "button",
-            { id: "animateBtn1" },
+            { className: "animate", id: "animateBtn" + props.number },
             "Animate"
         ),
         React.createElement(
             "button",
-            { id: "hideLayerBtn" },
+            { className: "hide", id: "hideLayerBtn" + props.number },
             "Hide Layer"
         ),
         React.createElement(
             "button",
-            { className: "remove", id: "removeLayerBtn" },
+            { className: "remove", id: "removeLayerBtn" + props.number },
             "Remove Layer"
         ),
         React.createElement(
