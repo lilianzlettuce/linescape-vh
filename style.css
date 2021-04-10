@@ -79,14 +79,18 @@ button:hover{
 
 .coords-btn-container {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .copyCoords{
     cursor: pointer;
     position: relative;
-    margin: 0;
-    width: 30px;
-    height: 30px;
+    top: 2px;
+    left: -13px;
+    font-size: 1.5rem;
+    width: 27px;
+    height: 27px;
 }
 
 .copyLength{
@@ -106,6 +110,24 @@ button:hover{
     padding: 0px;
     align-items: flex-start;
     justify-content: space-between;
+}
+
+@media (max-width: 900px) {
+    body{
+        overflow-y: visible;
+    }
+    #section{
+        flex-direction: column;
+        height: auto;
+    }
+    #canvas{
+        width: 88% !important;
+    }
+    #right-column{
+        width: 95% !important;
+        height: 400px !important;
+        margin: 0 3rem;
+    }
 }
 
 #canvas{
