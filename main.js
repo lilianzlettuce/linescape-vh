@@ -70,7 +70,7 @@ function Layer(props) {
         { id: "layer" + props.number, className: "layer" },
         React.createElement(
             "button",
-            { id: "restartBtn" },
+            { id: "restartBtn1" },
             "Reset"
         ),
         React.createElement(
@@ -85,7 +85,7 @@ function Layer(props) {
         ),
         React.createElement(
             "button",
-            { id: "animateBtn" },
+            { id: "animateBtn1" },
             "Animate"
         ),
         React.createElement(
@@ -93,7 +93,7 @@ function Layer(props) {
             { className: "coords-container" },
             React.createElement(
                 "div",
-                { className: "coords-btn-container" },
+                { className: "coords-heading" },
                 React.createElement(
                     "h3",
                     null,
@@ -107,15 +107,28 @@ function Layer(props) {
             ),
             React.createElement("textarea", { readOnly: true, id: "text-display1", name: "paragraph_text", cols: "50", rows: "10" })
         ),
+        React.createElement(
+            "div",
+            { className: "length-container" },
+            React.createElement(
+                "div",
+                { className: "length-heading" },
+                React.createElement(
+                    "h3",
+                    null,
+                    "Stroke Length"
+                ),
+                React.createElement(
+                    "button",
+                    { className: "copyLength", id: "copyLengthBtn" },
+                    React.createElement("i", { className: "far fa-copy" })
+                )
+            ),
+            React.createElement("input", { readOnly: true, type: "number", id: "strokeLength", className: "length-input" })
+        ),
         React.createElement("input", { type: "text", id: "color-input1", placeholder: "Color" }),
         React.createElement("input", { type: "number", id: "strokeWidth-input1", placeholder: "Stroke width" }),
-        React.createElement("input", { type: "number", id: "animation-input1", placeholder: "Animation Speed" }),
-        React.createElement(
-            "button",
-            { className: "copyLength", id: "copyLengthBtn" },
-            React.createElement("i", { className: "far fa-copy" })
-        ),
-        React.createElement("input", { readOnly: true, type: "number", id: "strokeLength", placeholder: "Stroke Length" })
+        React.createElement("input", { type: "number", id: "animation-input1", placeholder: "Animation Speed" })
     );
 }
 
@@ -148,7 +161,7 @@ function Scribble(props) {
             { className: "coords-container" },
             React.createElement(
                 "div",
-                { className: "coords-btn-container" },
+                { className: "coords-heading" },
                 React.createElement(
                     "h3",
                     null,
@@ -160,18 +173,31 @@ function Scribble(props) {
                     React.createElement("i", { className: "fas fa-copy" })
                 )
             ),
-            React.createElement("textarea", { readOnly: true, id: "text-display1", name: "paragraph_text2", cols: "50", rows: "10" })
+            React.createElement("textarea", { readOnly: true, id: "text-display2", name: "paragraph_text", cols: "50", rows: "10" })
+        ),
+        React.createElement(
+            "div",
+            { className: "length-container" },
+            React.createElement(
+                "div",
+                { className: "length-heading" },
+                React.createElement(
+                    "h3",
+                    null,
+                    "Stroke Length"
+                ),
+                React.createElement(
+                    "button",
+                    { className: "copyLength", id: "copyLengthBtn2" },
+                    React.createElement("i", { className: "far fa-copy" })
+                )
+            ),
+            React.createElement("input", { readOnly: true, type: "number", id: "strokeLength2", className: "length-input" })
         ),
         React.createElement("input", { type: "text", id: "color-input2", placeholder: "Color" }),
         React.createElement("input", { type: "number", id: "strokeWidth-input2", placeholder: "Stroke width" }),
         React.createElement("input", { type: "number", id: "animation-input2", placeholder: "Animation Speed" }),
-        React.createElement("input", { type: "number", id: "size-input2", placeholder: "Size" }),
-        React.createElement(
-            "button",
-            { className: "copyLength", id: "copyLengthBtn" },
-            React.createElement("i", { className: "far fa-copy" })
-        ),
-        React.createElement("input", { readOnly: true, type: "number", id: "strokeLength2", placeholder: "Stroke Length" })
+        React.createElement("input", { type: "number", id: "size-input2", placeholder: "Size" })
     );
 }
 

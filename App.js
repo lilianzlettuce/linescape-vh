@@ -11,6 +11,18 @@ document.addEventListener('DOMContentLoaded', () => {
     let speed = document.querySelector('#animation-input1').value
     let size = document.querySelector('#size-input2').value
 
+    //update values
+    function updateVals() {
+        d = path.getAttribute('d')
+        text = document.querySelector('#text-display1')
+        lengthText = document.querySelector('#strokeLength')
+        color = document.querySelector('#color-input1').value
+        width = document.querySelector('#strokeWidth-input1').value
+        speed = document.querySelector('#animation-input1').value
+        size = document.querySelector('#size-input2').value
+        length = path.getTotalLength();
+    }
+
     //variables for canvas & path drawing
     let firstClick = true
     let numLines = 0
@@ -40,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
             lengthText.value = length
         }
 
-        d = path.getAttribute('d')
+        updateVals()
         text.value = d
     })
 
@@ -65,11 +77,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             down = false
 
-            d = path.getAttribute('d')
+            updateVals()
             text.value = d
-            length = path.getTotalLength();
             lengthText.value = length;
         } else if (e.code === 'Enter') {    //set new stroke color/thickness
+            console.log(color)
+            updateVals()
             if (color != '') {
                 path.style.stroke = color
             }
@@ -108,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     //erase all path
-    document.querySelector('#restartBtn').addEventListener('click', () => {
+    document.querySelector('#restartBtn1').addEventListener('click', () => {
         firstClick = true
         numLines = 0
         down = false
@@ -116,6 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
         lengthText.value = ''
         path.setAttribute('d', '')
 
+        updateVals()
         if (color != '') {
             path.style.stroke = color
         }
@@ -141,10 +155,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let S = 'M 374 182 Q 415 183, 415 181  Q 415 140, 385 118      Q 353 100, 318 117    Q 287 136, 284 179  Q 286 231, 340 245  Q 386 253, 379 289  Q 373 311, 335 300  Q 313 293, 314 264  Q 285 261, 281 263  Q 281 328, 336 339  Q 374 339, 393 328  Q 418 304, 410 254    Q 401 211, 347 203  Q 324 197, 323 176      Q 323 163, 334 150  Q 344 141, 360 144  Q 373 147, 375 161  Q 376 182, 374 182 '
     let U = 'M 445 121 Q 442 268, 448 290    Q 452 313, 556 307  Q 586 310, 571 116  Q 542 115, 537 115  Q 536 238, 536 251  Q 536 269, 487 270  Q 467 263, 481 118  Q 444 121, 444 121 '
     //path.setAttribute('d', amongUs1)
-    length = path.getTotalLength()
+    updateVals()
 
     //animate path
-    document.querySelector('#animateBtn').addEventListener('click', () => {
+    document.querySelector('#animateBtn1').addEventListener('click', () => {
+        updateVals()
         if (color != '') {
             path.style.stroke = color
         }
@@ -208,9 +223,10 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(d)
     }
 
-    let scribbleSize = 10
+    let scribbleSize = 70
     //add functionality to generate scribble btn
     document.querySelector('#genNew2').addEventListener('click', () => {
+        updateVals()
         if (size != '') {
             scribbleSize = size
         }
