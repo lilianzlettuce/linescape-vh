@@ -1,8 +1,9 @@
 :root {
-    --main: rgb(77, 1, 255);
-    --darker: rgb(23, 5, 51);
-    --dark: rgb(52, 0, 173);
-    --light: rgb(171, 136, 255);
+    --main: rgb(1, 18, 255);
+    --darker: rgb(0, 4, 58);
+    --dark: rgb(0, 11, 172);
+    --light: rgb(125, 144, 255);
+    --lighter: rgb(183, 194, 255);
 }
 
 html{
@@ -21,6 +22,13 @@ body{
     overflow: hidden;
 }
 
+h2{
+    font-family: inherit;
+    font-size: 2.7rem;
+    color: var(--light);
+    margin: 1.2rem;
+}
+
 h3{
     font-family: inherit;
     font-size: 2rem;
@@ -34,7 +42,7 @@ input{
     font-family: inherit;
     font-size: 1.6rem;
     font-weight: 300;
-    border-bottom: 1px solid var(--light);
+    border-bottom: 1px solid var(--main);
     padding: .7rem .2rem;
     margin: 1rem;
     color: black;
@@ -43,24 +51,24 @@ input{
 
 textarea{
     outline: none;
-    border: none;
-    border-radius: 5px;
-    background-color: var(--darker);
+    border: 1.5px solid var(--darker);
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
     font-size: 1.6rem;
     font-weight: 300;
     padding: 10px 10px;
     margin: 0;
-    color: rgb(255, 255, 255);
-    overflow-y: scroll;
+    color: var(--dark);
+    overflow-y: hidden;
     width: 95%;
     height: 150px;
 }
 
 button{
     outline: none;
-    border: 1px solid rgb(77, 1, 255);
-    color:rgb(77, 1, 255);
-    background-color: rgb(255, 255, 255);
+    border: none;
+    color:white;
+    background-color: var(--darker);
     border-radius: 5px;
     font-family: inherit;
     font-size: 1.5rem;
@@ -74,7 +82,7 @@ button:hover{
 }
 
 .coords-container{
-    margin: 1rem;
+    margin: 1rem 1rem 3rem 1rem;
     width: 100%;
     height: 180px;
 }
@@ -82,37 +90,42 @@ button:hover{
 .coords-heading {
     display: flex;
     align-items: center;
-    justify-content: space-between;
 }
 
 .copyCoords{
     cursor: pointer;
     position: relative;
-    top: 2px;
-    left: -28px;
-    font-size: 1.5rem;
+    top: 4px;
+    left: 5px;
+    font-size: 1.8rem;
     width: 27px;
     height: 27px;
+    background-color: white;
+    color: var(--main);
+    border: none;
 }
 
 .length-container{
-    margin: 3rem 1rem 1rem 1rem;
+    margin: 1rem;
 }
 
 .copyLength{
     cursor: pointer;
     position: relative;
-    top: 2px;
-    left: 0px;
-    font-size: 1.5rem;
+    top: 4px;
+    left: 5px;
+    font-size: 1.8rem;
     width: 27px;
     height: 27px;
+    background-color: white;
+    color: var(--main);
+    border: none;
 }
 
 .length-heading {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 
 .length-input{
@@ -147,10 +160,11 @@ button:hover{
     }
     #section{
         flex-direction: column;
-        height: auto;
+        height: 160vh;
     }
-    #canvas{
-        width: 88% !important;
+    #filler{
+        width: 100% !important;
+        height: 100vh !important;
     }
     #right-column{
         width: 95% !important;
@@ -160,19 +174,28 @@ button:hover{
 }
 
 #canvas{
-    border-radius: 10px;
-    box-shadow: 0px 5px 15px rgba(128, 128, 128, 0.719);
-    margin: 50px;
-    width: 60%;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0 ;
+}
+
+#filler{
+    width: 70vw;
+    height: 100%;
+    transition: 1s ease;
 }
 
 #right-column{
-    width: 40%;
-    height: 100%;
+    width: 40vw;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-evenly;
+    z-index: 100;
 }
 
 #add-btns-container{

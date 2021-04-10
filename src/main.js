@@ -7,19 +7,22 @@ class Main extends React.Component {
 
     render() {
         return (
-            <div id="section">
+            <div>
                 <svg className="" id="canvas" width="700" height="500">
                     <Path number="1" color="black" strokeWidth="2" d="" />
                     <Path number="2" color="black" strokeWidth="1" d="" />
                 </svg>
-                <div id="right-column">
-                    <div id="add-btns-container">
-                        <button id="addLayerBtn">Add Layer</button>
-                        <button id="addScribbleBtn">Add Scribble</button>
-                    </div>
-                    <div id="layers-container">
-                        <Layer number="1" />
-                        <Scribble number="1" />
+                <div id="section">
+                    <div id="filler"></div>
+                    <div id="right-column">
+                        <div id="add-btns-container">
+                            <button id="addLayerBtn">Add Layer</button>
+                            <button id="addScribbleBtn">Add Scribble</button>
+                        </div>
+                        <div id="layers-container">
+                            <Layer number="1" />
+                            <Scribble number="1" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -37,16 +40,13 @@ function Layer(props) {
     return (
         <div id={"layer" + props.number} className="layer">
             <button id="restartBtn1">Reset</button>
+            <button id="animateBtn1">Animate</button>
             <button id="hideLayerBtn">Hide Layer</button>
             <button className="remove" id="removeLayerBtn">Remove Layer</button>
-            <button id="animateBtn1">Animate</button>
-            <div className="coords-container">
-                <div className="coords-heading">
-                    <h3>SVG Coordinates</h3>
-                    <button className="copyCoords" id="copyCoordsBtn"><i className="fas fa-copy"></i></button>
-                </div>
-                <textarea readOnly id="text-display1" name="paragraph_text" cols="50" rows="10" ></textarea>
-            </div>
+            <h2>Layer #{props.number}</h2>
+            <input type="text" id="color-input1" placeholder="Color" />
+            <input type="number" id="strokeWidth-input1" placeholder="Stroke width" />
+            <input type="number" id="animation-input1" placeholder="Animation Speed" />
             <div className="length-container">
                 <div className="length-heading">
                     <h3>Stroke Length</h3>
@@ -54,9 +54,13 @@ function Layer(props) {
                 </div>
                 <input readOnly type = "number" id="strokeLength" className="length-input" />
             </div>
-            <input type="text" id="color-input1" placeholder="Color" />
-            <input type="number" id="strokeWidth-input1" placeholder="Stroke width" />
-            <input type="number" id="animation-input1" placeholder="Animation Speed" />
+            <div className="coords-container">
+                <div className="coords-heading">
+                    <h3>SVG Coordinates</h3>
+                    <button className="copyCoords" id="copyCoordsBtn"><i className="fas fa-copy"></i></button>
+                </div>
+                <textarea readOnly id="text-display1" name="paragraph_text" cols="50" rows="10" ></textarea>
+            </div>
         </div>
     )
 }
@@ -68,19 +72,19 @@ function Scribble(props) {
             <button id="hideLayerBtn2">Hide Scribble</button>
             <button className="remove" id="removeLayerBtn2">Remove Scribble</button>
             <button id="animateBtn2">Animate</button>
-            <div className="coords-container">
-                <div className="coords-heading">
-                    <h3>SVG Coordinates</h3>
-                    <button className="copyCoords" id="copyCoordsBtn2"><i className="fas fa-copy"></i></button>
-                </div>
-                <textarea readOnly id="text-display2" name="paragraph_text" cols="50" rows="10" ></textarea>
-            </div>
             <div className="length-container">
                 <div className="length-heading">
                     <h3>Stroke Length</h3>
                     <button className="copyLength" id="copyLengthBtn2"><i className="far fa-copy"></i></button>
                 </div>
                 <input readOnly type = "number" id="strokeLength2" className="length-input" />
+            </div>
+            <div className="coords-container">
+                <div className="coords-heading">
+                    <h3>SVG Coordinates</h3>
+                    <button className="copyCoords" id="copyCoordsBtn2"><i className="fas fa-copy"></i></button>
+                </div>
+                <textarea readOnly id="text-display2" name="paragraph_text" cols="50" rows="10" ></textarea>
             </div>
             <input type="text" id="color-input2" placeholder="Color" />
             <input type="number" id="strokeWidth-input2" placeholder="Stroke width" />

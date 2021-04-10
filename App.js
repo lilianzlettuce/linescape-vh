@@ -27,14 +27,14 @@ document.addEventListener('DOMContentLoaded', () => {
     let firstClick = true
     let numLines = 0
     let down = false
-    let offSetX = 50
-    let offSetY = 50
+    let offSetX = 0
+    let offSetY = 0
     let length = path.getTotalLength()
 
     //setting path points
     canvas.addEventListener('click', (e) => {
         let x = Math.floor(e.clientX) - offSetX
-        let y = Math.floor(e.clientY) - offSetY
+        let y = Math.floor(e.clientY) - offSetY + window.scrollY
         if (firstClick) {
             firstClick = false
             path.setAttribute('d', `M ${x} ${y}`)
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //rewrite last curve to follow mouse 
     canvas.addEventListener('mousemove', (e) => {
         let x = e.clientX - offSetX
-        let y = e.clientY - offSetY
+        let y = e.clientY - offSetY + window.scrollY
         if (down) {
             let index = getIndexComma()
             path.setAttribute('d', `${d.substring(0, index)}, ${x} ${y} `)

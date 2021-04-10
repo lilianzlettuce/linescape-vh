@@ -22,7 +22,7 @@ var Main = function (_React$Component) {
         value: function render() {
             return React.createElement(
                 "div",
-                { id: "section" },
+                null,
                 React.createElement(
                     "svg",
                     { className: "", id: "canvas", width: "700", height: "500" },
@@ -31,26 +31,31 @@ var Main = function (_React$Component) {
                 ),
                 React.createElement(
                     "div",
-                    { id: "right-column" },
+                    { id: "section" },
+                    React.createElement("div", { id: "filler" }),
                     React.createElement(
                         "div",
-                        { id: "add-btns-container" },
+                        { id: "right-column" },
                         React.createElement(
-                            "button",
-                            { id: "addLayerBtn" },
-                            "Add Layer"
+                            "div",
+                            { id: "add-btns-container" },
+                            React.createElement(
+                                "button",
+                                { id: "addLayerBtn" },
+                                "Add Layer"
+                            ),
+                            React.createElement(
+                                "button",
+                                { id: "addScribbleBtn" },
+                                "Add Scribble"
+                            )
                         ),
                         React.createElement(
-                            "button",
-                            { id: "addScribbleBtn" },
-                            "Add Scribble"
+                            "div",
+                            { id: "layers-container" },
+                            React.createElement(Layer, { number: "1" }),
+                            React.createElement(Scribble, { number: "1" })
                         )
-                    ),
-                    React.createElement(
-                        "div",
-                        { id: "layers-container" },
-                        React.createElement(Layer, { number: "1" }),
-                        React.createElement(Scribble, { number: "1" })
                     )
                 )
             );
@@ -75,6 +80,11 @@ function Layer(props) {
         ),
         React.createElement(
             "button",
+            { id: "animateBtn1" },
+            "Animate"
+        ),
+        React.createElement(
+            "button",
             { id: "hideLayerBtn" },
             "Hide Layer"
         ),
@@ -84,29 +94,14 @@ function Layer(props) {
             "Remove Layer"
         ),
         React.createElement(
-            "button",
-            { id: "animateBtn1" },
-            "Animate"
+            "h2",
+            null,
+            "Layer #",
+            props.number
         ),
-        React.createElement(
-            "div",
-            { className: "coords-container" },
-            React.createElement(
-                "div",
-                { className: "coords-heading" },
-                React.createElement(
-                    "h3",
-                    null,
-                    "SVG Coordinates"
-                ),
-                React.createElement(
-                    "button",
-                    { className: "copyCoords", id: "copyCoordsBtn" },
-                    React.createElement("i", { className: "fas fa-copy" })
-                )
-            ),
-            React.createElement("textarea", { readOnly: true, id: "text-display1", name: "paragraph_text", cols: "50", rows: "10" })
-        ),
+        React.createElement("input", { type: "text", id: "color-input1", placeholder: "Color" }),
+        React.createElement("input", { type: "number", id: "strokeWidth-input1", placeholder: "Stroke width" }),
+        React.createElement("input", { type: "number", id: "animation-input1", placeholder: "Animation Speed" }),
         React.createElement(
             "div",
             { className: "length-container" },
@@ -126,9 +121,25 @@ function Layer(props) {
             ),
             React.createElement("input", { readOnly: true, type: "number", id: "strokeLength", className: "length-input" })
         ),
-        React.createElement("input", { type: "text", id: "color-input1", placeholder: "Color" }),
-        React.createElement("input", { type: "number", id: "strokeWidth-input1", placeholder: "Stroke width" }),
-        React.createElement("input", { type: "number", id: "animation-input1", placeholder: "Animation Speed" })
+        React.createElement(
+            "div",
+            { className: "coords-container" },
+            React.createElement(
+                "div",
+                { className: "coords-heading" },
+                React.createElement(
+                    "h3",
+                    null,
+                    "SVG Coordinates"
+                ),
+                React.createElement(
+                    "button",
+                    { className: "copyCoords", id: "copyCoordsBtn" },
+                    React.createElement("i", { className: "fas fa-copy" })
+                )
+            ),
+            React.createElement("textarea", { readOnly: true, id: "text-display1", name: "paragraph_text", cols: "50", rows: "10" })
+        )
     );
 }
 
@@ -158,25 +169,6 @@ function Scribble(props) {
         ),
         React.createElement(
             "div",
-            { className: "coords-container" },
-            React.createElement(
-                "div",
-                { className: "coords-heading" },
-                React.createElement(
-                    "h3",
-                    null,
-                    "SVG Coordinates"
-                ),
-                React.createElement(
-                    "button",
-                    { className: "copyCoords", id: "copyCoordsBtn2" },
-                    React.createElement("i", { className: "fas fa-copy" })
-                )
-            ),
-            React.createElement("textarea", { readOnly: true, id: "text-display2", name: "paragraph_text", cols: "50", rows: "10" })
-        ),
-        React.createElement(
-            "div",
             { className: "length-container" },
             React.createElement(
                 "div",
@@ -193,6 +185,25 @@ function Scribble(props) {
                 )
             ),
             React.createElement("input", { readOnly: true, type: "number", id: "strokeLength2", className: "length-input" })
+        ),
+        React.createElement(
+            "div",
+            { className: "coords-container" },
+            React.createElement(
+                "div",
+                { className: "coords-heading" },
+                React.createElement(
+                    "h3",
+                    null,
+                    "SVG Coordinates"
+                ),
+                React.createElement(
+                    "button",
+                    { className: "copyCoords", id: "copyCoordsBtn2" },
+                    React.createElement("i", { className: "fas fa-copy" })
+                )
+            ),
+            React.createElement("textarea", { readOnly: true, id: "text-display2", name: "paragraph_text", cols: "50", rows: "10" })
         ),
         React.createElement("input", { type: "text", id: "color-input2", placeholder: "Color" }),
         React.createElement("input", { type: "number", id: "strokeWidth-input2", placeholder: "Stroke width" }),
