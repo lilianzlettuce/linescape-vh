@@ -35,12 +35,12 @@ function Path(props) {
 function Layer(props) {
     return (
         <div id={"layer" + props.number} className="layer">
-            <button id="removeLayerBtn">Remove Layer</button>
+            <button class="remove" id="removeLayerBtn">Remove Layer</button>
             <button id="hideLayerBtn">Hide Layer</button>
             <button id="animateBtn">Animate</button>
             <button id="copyCoordsBtn">Copy</button>
             <button id="copyLengthBtn">Copy</button>
-            <button id="restartBtn">Restart</button>
+            <button id="restartBtn">Reset</button>
             <textarea readOnly id="text-display1" name="paragraph_text" cols="50" rows="10" placeholder="SVG coordinates"></textarea>
             <input type="text" id="color-input1" placeholder="Color" />
             <input type="number" id="strokeWidth-input1" placeholder="Stroke width" />
@@ -53,7 +53,7 @@ function Layer(props) {
 function Scribble(props) {
     return (
         <div id={"scribble" + props.number} className="layer">
-            <button id="removeLayerBtn2">Remove Scribble</button>
+            <button class="remove" id="removeLayerBtn2">Remove Scribble</button>
             <button id="hideLayerBtn2">Hide Scribble</button>
             <button id="animateBtn2">Animate</button>
             <button id="copyCoordsBtn2">Copy</button>

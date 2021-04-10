@@ -69,7 +69,7 @@ function Layer(props) {
         { id: "layer" + props.number, className: "layer" },
         React.createElement(
             "button",
-            { id: "removeLayerBtn" },
+            { "class": "remove", id: "removeLayerBtn" },
             "Remove Layer"
         ),
         React.createElement(
@@ -95,7 +95,7 @@ function Layer(props) {
         React.createElement(
             "button",
             { id: "restartBtn" },
-            "Restart"
+            "Reset"
         ),
         React.createElement("textarea", { readOnly: true, id: "text-display1", name: "paragraph_text", cols: "50", rows: "10", placeholder: "SVG coordinates" }),
         React.createElement("input", { type: "text", id: "color-input1", placeholder: "Color" }),
@@ -111,7 +111,7 @@ function Scribble(props) {
         { id: "scribble" + props.number, className: "layer" },
         React.createElement(
             "button",
-            { id: "removeLayerBtn2" },
+            { "class": "remove", id: "removeLayerBtn2" },
             "Remove Scribble"
         ),
         React.createElement(
