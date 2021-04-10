@@ -50,10 +50,13 @@ function List(props) {
 function Layer(props) {
     return (
         <div id={"layer" + props.number} className="layer">
-            <button className="reset" id={"resetBtn" + props.number}>Reset</button>
-            <button className="animate" id={"animateBtn" + props.number}>Animate</button>
-            <button className="hide" id={"hideLayerBtn" + props.number}>Hide Layer</button>
-            <button className="remove" id={"removeLayerBtn" + props.number}>Remove Layer</button>
+            <div className="btn-box">
+                <button className="reset" id={"resetBtn" + props.number}>Reset</button>
+                <button className="animate" id={"animateBtn" + props.number}>Animate</button>
+                <button className="hide" id={"hideLayerBtn" + props.number}>Hide</button>
+                <button className="hide" id={"saveLayerBtn" + props.number}>Save</button>
+                <button className="remove" id={"removeLayerBtn" + props.number}>Remove</button>
+            </div>
             <h2>Layer #{props.number}</h2>
             <input type="text" id="color-input1" placeholder="Color" />
             <input type="number" id="strokeWidth-input1" placeholder="Stroke width" />
@@ -72,35 +75,6 @@ function Layer(props) {
                 </div>
                 <textarea readOnly id="text-display1" name="paragraph_text" cols="50" rows="10" ></textarea>
             </div>
-        </div>
-    )
-}
-
-function Scribble(props) {
-    return (
-        <div id={"scribble" + props.number} className="layer">
-            <button id="genNew2">Generate New Scribble</button>
-            <button id="hideLayerBtn2">Hide Scribble</button>
-            <button className="remove" id="removeLayerBtn2">Remove Scribble</button>
-            <button id="animateBtn2">Animate</button>
-            <div className="length-container">
-                <div className="length-heading">
-                    <h3>Stroke Length</h3>
-                    <button className="copyLength" id="copyLengthBtn2"><i className="far fa-copy"></i></button>
-                </div>
-                <input readOnly type = "number" id="strokeLength2" className="length-input" />
-            </div>
-            <div className="coords-container">
-                <div className="coords-heading">
-                    <h3>SVG Coordinates</h3>
-                    <button className="copyCoords" id="copyCoordsBtn2"><i className="fas fa-copy"></i></button>
-                </div>
-                <textarea readOnly id="text-display2" name="paragraph_text" cols="50" rows="10" ></textarea>
-            </div>
-            <input type="text" id="color-input2" placeholder="Color" />
-            <input type="number" id="strokeWidth-input2" placeholder="Stroke width" />
-            <input type="number" id="animation-input2" placeholder="Animation Speed" />
-            <input type="number" id="size-input2" placeholder="Size" />
         </div>
     )
 }
