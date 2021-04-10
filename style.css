@@ -24,3 +24,23 @@ body{
     color: rgb(148, 148, 148);
     cursor: pointer;
 }
+
+input{
+    outline: none;
+    border: none;
+    font-family: inherit;
+    font-size: 1.6rem;
+    font-weight: 300;
+    border-bottom: 1px solid var(--light);
+    padding: .7rem .2rem;
+    margin: 1rem;
+    color: var(--green);
+}
+
+button{
+    outline: none;
+    border: 1px solid black;
+    font-family: inherit;
+    font-size: 1.6rem;
+    font-weight: 300;
+}
