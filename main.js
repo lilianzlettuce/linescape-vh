@@ -44,8 +44,8 @@ var Main = function (_React$Component) {
                 React.createElement(
                     'svg',
                     { className: '', id: 'canvas', onClick: this.canvasClicked, width: '700', height: '500' },
-                    this.state.paths.map(function (path) {
-                        return React.createElement(Path, { key: "path" + path.number, number: path.number, color: 'black', strokeWidth: '2', d: path.d });
+                    this.state.layers.map(function (layer) {
+                        return React.createElement(Path, { key: "path" + layer.number, number: layer.number, color: 'black', strokeWidth: '2', d: layer.path });
                     })
                 ),
                 React.createElement(
@@ -86,35 +86,24 @@ var Main = function (_React$Component) {
     }, {
         key: 'canvasClicked',
         value: function canvasClicked() {
-            this.setState({ currentPath: document.querySelector('#path').getAttribute('d') });
+            this.setState({ currentPath: document.querySelector('#path' + this.state.numLayers).getAttribute('d') });
         }
     }, {
         key: 'addLayer',
         value: function addLayer() {
             var oldLayer = {
                 number: this.state.numLayers,
-                path: document.querySelector('#path').getAttribute('d')
+                path: document.querySelector('#path' + this.state.numLayers).getAttribute('d')
             };
             var newLayer = {
                 number: this.state.numLayers + 1,
                 path: ''
             };
 
-            var oldPath = {
-                number: this.state.numLayers,
-                d: document.querySelector('#path').getAttribute('d')
-            };
-            var newPath = {
-                number: '',
-                d: ''
-            };
-
             this.state.layers.pop();
-            this.state.paths.pop();
             this.setState(function (state) {
                 return {
                     layers: state.layers.concat(oldLayer).concat(newLayer),
-                    paths: state.paths.concat(oldPath).concat(newPath),
                     numLayers: state.numLayers + 1,
                     currentPath: ''
                 };
@@ -261,12 +250,12 @@ var Layer = function (_React$Component2) {
         key: 'hideLayer',
         value: function hideLayer() {
             if (!this.state.hideClicked) {
-                document.querySelector('#path').style.opacity = '0%';
+                document.querySelector('#path' + this.props.number).style.opacity = '0%';
                 document.querySelector("#hideBtn" + this.props.number).style.backgroundColor = 'rgb(92, 92, 92)';
                 document.querySelector("#hideBtn" + this.props.number).style.color = 'white';
                 this.setState({ hideClicked: true });
             } else {
-                document.querySelector('#path').style.opacity = '100%';
+                document.querySelector('#path' + this.props.number).style.opacity = '100%';
                 document.querySelector("#hideBtn" + this.props.number).style.backgroundColor = 'white';
                 document.querySelector("#hideBtn" + this.props.number).style.color = 'rgb(92, 92, 92)';
                 this.setState({ hideClicked: false });
