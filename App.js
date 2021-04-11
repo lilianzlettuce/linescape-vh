@@ -250,7 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (size != '') {
             scribbleSize = size
         }
-        createScribble('#path', 450, 300, 1, scribbleSize, 4, 4)
+        createScribble('#path' + layerNum, 450, 300, 1, scribbleSize, 4, 4)
         length = path.getTotalLength()
         lengthText.value = length
         d = path.getAttribute('d')

@@ -29,6 +29,10 @@ h2{
     margin: 1.2rem;
 }
 
+.longer-h2{
+    width: 100%;
+}
+
 .h2-input{
     font-family: inherit;
     font-size: 2.7rem;
@@ -148,6 +152,14 @@ button:active{
 }
 .animate:active {
     background-color: rgb(180, 139, 255);
+}
+
+.show{
+    color:tomato;
+    border-color: tomato;
+}
+.show:active{
+    background-color: rgb(255, 168, 153);
 }
 
 .genNew{
@@ -295,10 +307,10 @@ button:active{
 }
 
 #canvas2{
-    width: auto;
+    width: 55vw;
     height: 500px;
     top: 10vh;
-    left: 10vw;
+    left: 5vw;
 }
 
 .h3-margin-left{
@@ -405,4 +417,9 @@ button:active{
     100% {
         stroke-dashoffset: 50470;
     }
+}
+
+.saved-path{
+    opacity: 0%;
+    transition: opacity .5s ease;
 }
