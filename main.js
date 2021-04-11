@@ -81,6 +81,7 @@ var Main = function (_React$Component) {
             return React.createElement(
                 'div',
                 null,
+                React.createElement(LoginPage, null),
                 React.createElement(
                     'svg',
                     { className: 'canvas', id: 'canvas1', onClick: this.canvasClicked, width: '700', height: '500' },
@@ -194,6 +195,40 @@ var Main = function (_React$Component) {
 
     return Main;
 }(React.Component);
+
+function LoginPage(props) {
+    return React.createElement(
+        'div',
+        { id: 'login-page' },
+        React.createElement('div', { id: 'circle' }),
+        React.createElement(
+            'svg',
+            { className: 'canvas', id: 'canvas3', width: '600', height: '600' },
+            React.createElement('path', { id: 'line', className: 'draw', stroke: 'white', strokeLinecap: 'round', strokeWidth: '20', fill: 'transparent', d: 'M 768 368 Q 627 237, 554 329          Q 507 393, 454 431    Q 355 492, 340 325  Q 335 213, 295 189  Q 260 173, 219 240        Q 193 288, 149 327    Q 101 362, 61 347      Q 22 323, 6 349 ' })
+        ),
+        React.createElement(
+            'div',
+            { id: 'login-box' },
+            React.createElement(
+                'h1',
+                { id: 'login-title' },
+                'Sign in to LineScape'
+            ),
+            React.createElement('input', { type: 'email', placeholder: 'Email', className: 'login-input', id: 'email' }),
+            React.createElement('input', { type: 'password', placeholder: 'Password', className: 'login-input', id: 'password' }),
+            React.createElement(
+                'button',
+                { id: 'loginBtn', className: 'button' },
+                '\u2192'
+            ),
+            React.createElement(
+                'p',
+                { id: 'create-acct' },
+                'Create an account'
+            )
+        )
+    );
+}
 
 function Path(props) {
     return React.createElement('path', { id: "path" + props.number, className: 'draw', stroke: props.color, strokeLinecap: 'round', strokeWidth: props.strokeWidth, fill: 'transparent', d: props.d });

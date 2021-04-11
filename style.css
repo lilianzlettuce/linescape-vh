@@ -253,7 +253,7 @@ button:active{
     justify-content: space-between;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 900px) {
     body{
         overflow-y: visible;
     }
@@ -313,6 +313,27 @@ button:active{
     left: 5vw;
 }
 
+#canvas3{
+    position: absolute;
+    width: 800px;
+    height: 500px;
+    transform: scaleX(-1.7);
+    top: -29vh;
+    left: 25vw;
+    z-index: 400;
+    stroke-dasharray: 1112.2606201171875;
+    stroke-dashoffset: -1112.2606201171875;
+    animation: draw2 6s ease-out 0s 1 forwards;
+}
+@keyframes draw2 {
+    0%{
+        stroke-dashoffset: -1112.2606201171875;
+    }
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
 .h3-margin-left{
     margin-left: 1rem;
 }
@@ -339,6 +360,7 @@ button:active{
     align-items: flex-start;
     justify-content: flex-start;
     z-index: 100;
+    display: none;
 }
 
 #col-header{
@@ -422,4 +444,98 @@ button:active{
 .saved-path{
     opacity: 0%;
     transition: opacity .5s ease;
+}
+
+#login-page{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    z-index: 300;
+    transition: left 3s ease;
+}
+
+#circle{
+    position: absolute;
+    top: -125vh;
+    left: -3vw;
+    width: 200vw;
+    height: 250vh;
+    border-radius: 50%;
+    background-color: var(--main);
+    z-index: 200;
+}
+
+#login-box{
+    position: absolute;
+    left: 37vw;
+    top: 40vh;
+    z-index: 300;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@media(max-width:1200px) {
+    #login-box{
+        left: 30vw;
+        top: 40vh;
+    }
+    #canvas3{
+        top: -35vh;
+    }
+}
+@media(max-width:1100px) {
+    #login-box{
+        left: 25vw;
+        top: 30vh;
+    }
+    #canvas3{
+        top: -35vh;
+    }
+}
+@media(max-width:1000px) {
+    #login-box{
+        left: 55vw;
+        top: 20vh;
+        width: 300px;
+    }
+    #canvas3{
+        top: -45vh;
+    }
+    h1{
+        margin-bottom: 0rem;
+    }
+}
+
+h1{
+    font-size: 7rem;
+    color: white;
+    margin-bottom: 4rem;
+    color:var(--lighter);
+}
+
+.login-input{
+    border-radius: 5px;
+    color: var(-dark);
+    font-size: 1.8rem;
+    padding: 1.3rem 2rem;
+    width: 300px;
+    margin: 1.5rem;
+}
+
+#loginBtn{
+    color: white;
+    background-color: var(--dark);
+    font-size: 3rem;
+    width: 70px;
+    height: 70px;
+    margin-left: 3rem;
+}
+
+#create-acct{
+    cursor: pointer;
+    font-size: 1.6rem;
+    font-family: inherit;
+    color: white;
+    text-decoration: underline;
+    margin: 2rem;
 }

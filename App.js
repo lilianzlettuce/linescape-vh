@@ -1,5 +1,41 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    //autofill 
+    document.querySelector('#email').value = 'turnips@gmail.com'
+    document.querySelector('#password').value = 'password'
+
+    //login btn function
+    document.querySelector('#loginBtn').addEventListener('click', () => {
+        let email = document.querySelector('#email').value
+        let pass = document.querySelector('#password').value
+        firebase.auth().signInWithEmailAndPassword(email, pass)
+            .then((userCredential) => {
+                //signed in
+                let user = userCredential.user;
+
+                //ui updates
+                document.querySelector('#login-page').style.left = '500vw'
+                document.querySelector('#email').value = ''
+                document.querySelector('#password').value = ''
+            })
+            .catch(function (error) {
+                // handle errors
+                var errorCode = error.code
+                var errorMessage = error.message
+        
+                window.alert('Error : ' + errorMessage)
+            })
+    })
+
+    /**logout function
+    document.querySelector('#logoutBtn').addEventListener('click', () => {
+        firebase.auth().signOut()
+        let loginPage = document.querySelector('#login-page')
+        loginPage.classList.remove('disappearSlow')
+        loginPage.classList.add('appearSlow')
+        loginPage.style.zIndex = 500
+    })**/
+
     //get drawing elements
     let canvas = document.querySelector('#canvas1')
     let path = document.querySelector('#path1')
