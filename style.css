@@ -477,7 +477,7 @@ button:active{
 @media(max-width:1200px) {
     #login-box{
         left: 30vw;
-        top: 40vh;
+        top: 35vh;
     }
     #canvas3{
         top: -35vh;
@@ -486,10 +486,13 @@ button:active{
 @media(max-width:1100px) {
     #login-box{
         left: 25vw;
-        top: 30vh;
+        top: 34vh;
     }
     #canvas3{
         top: -35vh;
+    }
+    #create-acct{
+        left: 10rem;
     }
 }
 @media(max-width:1000px) {
