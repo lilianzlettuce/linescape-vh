@@ -149,23 +149,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     })
 
-    //temporarily hide
-    let hide = document.querySelector('#hideBtn1')
-    let hideClicked = false
-    hide.addEventListener('click', () => {
-        if (!hideClicked) {
-            path.style.opacity = '0%'
-            hide.style.backgroundColor = 'rgb(92, 92, 92)'
-            hide.style.color = 'white'
-            hideClicked = true
-        } else {
-            path.style.opacity = '100%'
-            hide.style.backgroundColor = 'white'
-            hide.style.color = 'rgb(92, 92, 92)'
-            hideClicked = false
-        }
-    })
-
     //copy path coords
     document.querySelector('#copyCoordsBtn').addEventListener('click', () => {
         text.select()

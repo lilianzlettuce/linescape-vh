@@ -132,8 +132,11 @@ var Layer = function (_React$Component2) {
 
         var _this2 = _possibleConstructorReturn(this, (Layer.__proto__ || Object.getPrototypeOf(Layer)).call(this, props));
 
-        _this2.reset = _this2.reset.bind(_this2);
+        _this2.state = {
+            hideClicked: false
+        };
         _this2.saveLayer = _this2.saveLayer.bind(_this2);
+        _this2.hideLayer = _this2.hideLayer.bind(_this2);
         return _this2;
     }
 
@@ -148,17 +151,17 @@ var Layer = function (_React$Component2) {
                     { className: 'btn-box btn-box-top' },
                     React.createElement(
                         'button',
-                        { className: 'reset', id: "resetBtn" + this.props.number, onClick: this.reset },
+                        { className: 'reset', id: "resetBtn" + this.props.number },
                         'Reset'
                     ),
                     React.createElement(
                         'button',
-                        { className: 'save', id: "saveLayerBtn" + this.props.number },
+                        { className: 'save', id: "saveLayerBtn" + this.props.number, onClick: this.saveLayer },
                         'Save'
                     ),
                     React.createElement(
                         'button',
-                        { className: 'hide', id: "hideBtn" + this.props.number },
+                        { className: 'hide', id: "hideBtn" + this.props.number, onClick: this.hideLayer },
                         'Hide'
                     ),
                     React.createElement(
@@ -239,22 +242,19 @@ var Layer = function (_React$Component2) {
         key: 'saveLayer',
         value: function saveLayer() {}
     }, {
-        key: 'reset',
-        value: function reset() {
-            /**firstClick = true
-            numLines = 0
-            down = false
-            text.value = ''
-            lengthText.value = '' 
-            path.setAttribute('d', '')
-             updateVals()
-            if (color != '') {
-                path.style.stroke = color
+        key: 'hideLayer',
+        value: function hideLayer() {
+            if (!this.state.hideClicked) {
+                document.querySelector('#path1').style.opacity = '0%';
+                document.querySelector("#hideBtn" + this.props.number).style.backgroundColor = 'rgb(92, 92, 92)';
+                document.querySelector("#hideBtn" + this.props.number).style.color = 'white';
+                this.setState({ hideClicked: true });
+            } else {
+                document.querySelector('#path1').style.opacity = '100%';
+                document.querySelector("#hideBtn" + this.props.number).style.backgroundColor = 'white';
+                document.querySelector("#hideBtn" + this.props.number).style.color = 'rgb(92, 92, 92)';
+                this.setState({ hideClicked: false });
             }
-            if (width != '') {
-                path.style.strokeWidth = width
-            } **/
-            document.querySelector('#path1').setAttribute('d', '');
         }
     }]);
 

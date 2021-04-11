@@ -86,17 +86,20 @@ function List(props) {
 class Layer extends React.Component {
     constructor(props) {
         super(props)
-        this.reset = this.reset.bind(this)
+        this.state = {
+            hideClicked: false,
+        }
         this.saveLayer = this.saveLayer.bind(this)
+        this.hideLayer = this.hideLayer.bind(this)
     }
 
     render() {
         return (
             <div id={"layer" + this.props.number} className="layer">
                 <div className="btn-box btn-box-top">
-                    <button className="reset" id={"resetBtn" + this.props.number} onClick={this.reset}>Reset</button>
-                    <button className="save" id={"saveLayerBtn" + this.props.number}>Save</button>
-                    <button className="hide" id={"hideBtn" + this.props.number}>Hide</button>
+                    <button className="reset" id={"resetBtn" + this.props.number} >Reset</button>
+                    <button className="save" id={"saveLayerBtn" + this.props.number} onClick={this.saveLayer}>Save</button>
+                    <button className="hide" id={"hideBtn" + this.props.number} onClick={this.hideLayer}>Hide</button>
                     <button className="remove" id={"removeBtn" + this.props.number}>Remove</button>
                 </div>
                 <div className="btn-box">
@@ -135,22 +138,18 @@ class Layer extends React.Component {
 
     }
 
-    reset() {
-        /**firstClick = true
-        numLines = 0
-        down = false
-        text.value = ''
-        lengthText.value = '' 
-        path.setAttribute('d', '')
-
-        updateVals()
-        if (color != '') {
-            path.style.stroke = color
+    hideLayer() {
+        if (!this.state.hideClicked) {
+            document.querySelector('#path1').style.opacity = '0%'
+            document.querySelector("#hideBtn" + this.props.number).style.backgroundColor = 'rgb(92, 92, 92)'
+            document.querySelector("#hideBtn" + this.props.number).style.color = 'white'
+            this.setState({ hideClicked: true })
+        } else {
+            document.querySelector('#path1').style.opacity = '100%'
+            document.querySelector("#hideBtn" + this.props.number).style.backgroundColor = 'white'
+            document.querySelector("#hideBtn" + this.props.number).style.color = 'rgb(92, 92, 92)'
+            this.setState({ hideClicked: false })
         }
-        if (width != '') {
-            path.style.strokeWidth = width
-        } **/
-        document.querySelector('#path1').setAttribute('d', '')
     }
 
 }
