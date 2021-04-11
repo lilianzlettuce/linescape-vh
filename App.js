@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     //get drawing elements
-    let canvas = document.querySelector('#canvas')
+    let canvas = document.querySelector('#canvas1')
     let path = document.querySelector('#path1')
     let d = path.getAttribute('d')
     let layerNum = 1
@@ -135,7 +135,6 @@ document.addEventListener('DOMContentLoaded', () => {
     //erase all path
     document.querySelector('#resetBtn1').addEventListener('click', resetFunc)
     function resetFunc() {
-        console.log('test')
         firstClick = true
         numLines = 0
         down = false
@@ -153,18 +152,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     //new layer
-    document.querySelector('#addLayerBtn').addEventListener('click', () => {
+    document.querySelector('#selectBtn').addEventListener('click', () => {
+        layerNum++
+        path = document.querySelector(`#path${layerNum}`)
         firstClick = true
         numLines = 0
         down = false
         length = 0
         isScribble = false
-        layerNum++
-    })
-
-    document.querySelector('#hideBtn1').addEventListener('click', () => {
-        path = document.querySelector(`#path${layerNum}`)
-        document.querySelector(`#resetBtn${layerNum}`).addEventListener('click', resetFunc)
     })
 
     //copy path coords
@@ -187,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateVals()
 
     //animate path
-    document.querySelector(`#animateBtn${layerNum}`).addEventListener('click', () => {
+    document.querySelector(`#animateBtn`).addEventListener('click', () => {
         updateVals()
         if (color != '') {
             path.style.stroke = color
@@ -264,5 +259,27 @@ document.addEventListener('DOMContentLoaded', () => {
         isScribble = true
         firstClick = true
     }) 
+
+    let tabOn = 1
+    let savedTab = document.querySelector('#saved-tab')
+    let layersTab = document.querySelector('#layers-tab')
+    let tabs = [...document.querySelectorAll('.tab')]
+    tabs.forEach(element => { 
+        element.addEventListener('click', () => {
+            if (tabOn === 1){
+                layersTab.style.color = "var(--main)"
+                layersTab.style.backgroundColor = "white"
+                savedTab.style.backgroundColor = "var(--main)"
+                savedTab.style.color = "white"
+                tabOn = 2
+            } else {
+                savedTab.style.color = "var(--main)"
+                savedTab.style.backgroundColor = "white"
+                layersTab.style.backgroundColor = "var(--main)"
+                layersTab.style.color = "white"
+                tabOn = 1
+            }
+        })
+    })
     
 })

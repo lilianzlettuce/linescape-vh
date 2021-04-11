@@ -4,17 +4,28 @@ class Main extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            layers: [{
-                number: 1,
-                path: '',
-            }],
-            paths: [{
-                number: '',
-                d: ''
-            }],
+            tab: 1,
+            layers: [
+                {
+                    number: 1,
+                    path: '',
+                }
+            ],
+            paths: [
+                {
+                    number: '',
+                    d: ''
+                }
+            ],
             currentPath: '',
             numLayers: 1,
-            saved: [],
+            saved: [
+                {
+                    name: 'among us',
+                    path: '',
+                    length: '',
+                }
+            ],
             numSaved: 0,
         }
         this.addLayer = this.addLayer.bind(this)
@@ -24,22 +35,27 @@ class Main extends React.Component {
     render() {
         return (
             <div>
-                <svg className="" id="canvas" onClick={this.canvasClicked} width="700" height="500">
+                <svg className="canvas" id="canvas1" onClick={this.canvasClicked} width="700" height="500">
                     {this.state.layers.map(layer => (
                         <Path key={"path" + layer.number} number={layer.number} color="black" strokeWidth="2" d={layer.path} />
                     ))}
                 </svg>
                 <div id="section">
-                    <div id="filler"></div>
-                    <div id="right-column">
-                        <div id="col-header">
+                    <div id="filler">
+                        <div id="heading">
                             <button id="addLayerBtn" onClick={this.addLayer}>Add Layer</button>
-                            <div>
+                            <button id="selectBtn">Select Newest</button>
+                            <button className="animate" id="animateBtn">Animate</button>
+                        </div>
+                    </div>
+                    <div className="right-column">
+                        <div id="col-header">
+                            <div id="tab-container">
                                 <button className="tab clicked" id="layers-tab">Layers</button>
                                 <button className="tab" id="saved-tab">Saved</button>
                             </div>
                         </div>
-                        <List layers={this.state.layers} />
+                        <LayerList layers={this.state.layers} />
                     </div>
                 </div>
             </div>
@@ -78,14 +94,24 @@ function Path(props) {
     )
 }
 
-function List(props) {
-    return (
-        <div id="layers-container">
-            {props.layers.map(layer => (
-                <Layer key={"layer" + layer.number} number={layer.number} />
-            ))}
-        </div>
-    )
+function LayerList(props) {
+    if (1 === 1) {
+        return (
+            <div className="layers-container">
+                {props.layers.map(layer => (
+                    <Layer key={"layer" + layer.number} number={layer.number} />
+                ))}
+            </div>
+        )
+    } else {
+        return (
+            <div className="layers-container">
+                {props.layers.map(layer => (
+                    <Layer key={"layer" + layer.number} number={layer.number} />
+                ))}
+            </div>
+        )
+    }
 }
 
 class Layer extends React.Component {
@@ -96,6 +122,8 @@ class Layer extends React.Component {
         }
         this.saveLayer = this.saveLayer.bind(this)
         this.hideLayer = this.hideLayer.bind(this)
+        this.copyCoords = this.copyCoords.bind(this)
+        this.copyLength = this.copyLength.bind(this)
     }
 
     render() {
@@ -110,7 +138,6 @@ class Layer extends React.Component {
                 <div className="btn-box">
                     <h2>Layer #{this.props.number}</h2>
                     <div className="btn-box2">
-                        <button className="animate" id={"animateBtn" + this.props.number}>Animate</button>
                         <button className="genNew" id={"genNewBtn" + this.props.number}>New Scribble</button>
                     </div>
                 </div>
@@ -123,7 +150,7 @@ class Layer extends React.Component {
                 <div className="length-container">
                     <div className="length-heading">
                         <h3>Stroke Length</h3>
-                        <button className="copyLength" id={"copyLengthBtn" + this.props.number}><i className="far fa-copy"></i></button>
+                        <button className="copyLength" onClick={this.copyLength} id={"copyLengthBtn" + this.props.number}><i className="far fa-copy"></i></button>
                     </div>
                     <input readOnly type = "number" id={"strokeLength" + this.props.number} className="length-input" />
                 </div>
@@ -131,7 +158,7 @@ class Layer extends React.Component {
                 <div className="coords-container">
                     <div className="coords-heading">
                         <h3>SVG Coordinates</h3>
-                        <button className="copyCoords" id={"copyCoordsBtn" + this.props.number}><i className="fas fa-copy"></i></button>
+                        <button className="copyCoords" onClick={this.copyCoords} id={"copyCoordsBtn" + this.props.number}><i className="fas fa-copy"></i></button>
                     </div>
                     <textarea id={"text-display" + this.props.number} name="paragraph_text" cols="50" rows="10" ></textarea>
                 </div>
@@ -157,7 +184,81 @@ class Layer extends React.Component {
         }
     }
 
+    //copy path coords
+    copyCoords() {
+        document.querySelector("#text-display" + this.props.number).select()
+        document.execCommand("copy")
+    }
+
+    //copy path length
+    copyLength() {
+        document.querySelector("#strokeLength" + this.props.number).select()
+        document.execCommand("copy")
+    }
+
 }
+
+class Saved extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            
+        }
+        this.copyCoords = this.copyCoords.bind(this)
+        this.copyLength = this.copyLength.bind(this)
+        this.animate = this.animate.bind(this)
+    }
+
+    render() {
+        return (
+            <div id={"saved" + this.props.number} className="layer">
+                <div className="btn-box">
+                    <h2>{this.props.name}</h2>
+                    <div className="btn-box2">
+                        <button className="animate" id={"ani" + this.props.number} onClick={this.animate}>Animate</button>
+                    </div>
+                </div>
+    
+                <div className="length-container">
+                    <div className="length-heading">
+                        <h3>Stroke Length</h3>
+                        <button className="copyLength" onClick={this.copyLength} id={"copyLengthBtn" + this.props.number}><i className="far fa-copy"></i></button>
+                    </div>
+                </div>
+    
+                <div className="coords-container">
+                    <div className="coords-heading">
+                        <h3>SVG Coordinates</h3>
+                        <button className="copyCoords" onClick={this.copyCoords} id={"copyCoordsBtn" + this.props.number}><i className="fas fa-copy"></i></button>
+                    </div>
+                </div>
+
+                <svg className="canvas" id="canvas2" width="600" height="600">
+                    <path id={"p" + this.props.number} className="draw" stroke={this.props.color} strokeLinecap="round" strokeWidth={this.props.strokeWidth} fill="transparent" d={this.props.path} />
+                </svg>
+            </div>
+        )
+    }
+
+    animate() {
+
+    }
+
+    //copy path coords
+    copyCoords() {
+        document.querySelector("#text-display" + this.props.number).select()
+        document.execCommand("copy")
+    }
+
+    //copy path length
+    copyLength() {
+        document.querySelector("#strokeLength" + this.props.number).select()
+        document.execCommand("copy")
+    }
+
+}
+
+
 
 
 
