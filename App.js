@@ -14,9 +14,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 let user = userCredential.user;
 
                 //ui updates
-                document.querySelector('#login-page').style.left = '500vw'
+                document.querySelector('#login-page').style.left = '200vw'
+                document.querySelector('#login-page').style.opacity = '80%'
                 document.querySelector('#email').value = ''
                 document.querySelector('#password').value = ''
+                document.querySelector('.right-column').style.display = 'flex'
             })
             .catch(function (error) {
                 // handle errors
