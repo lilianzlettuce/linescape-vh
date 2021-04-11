@@ -308,7 +308,7 @@ button:active{
 
 #canvas2{
     width: 55vw;
-    height: 500px;
+    height: 600px;
     top: 10vh;
     left: 5vw;
 }
@@ -417,7 +417,7 @@ button:active{
 }
 
 .saveLayer{
-    height: 170px;
+    height: 40%;
 }
 
 .draw{
