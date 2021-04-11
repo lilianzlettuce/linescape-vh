@@ -4,25 +4,23 @@ class Main extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            layers: [
-                {
-                    number: 1,
-                    d: '',
-                },
-            ],
+            layers: [{
+                number: 1,
+                path: '',
+            }],
+            currentPath: '',
             numLayers: 1,
-            saved: [
-
-            ],
+            saved: [],
             numSaved: 0,
         }
         this.addLayer = this.addLayer.bind(this)
+        this.canvasClicked = this.canvasClicked.bind(this)
     }
 
     render() {
         return (
             <div>
-                <svg className="" id="canvas" width="700" height="500">
+                <svg className="" id="canvas" onClick={this.canvasClicked} width="700" height="500">
                     {this.state.layers.map(layer => (
                         <Path key={"path" + layer.number} number={layer.number} color="black" strokeWidth="2" d="" />
                     ))}
@@ -44,16 +42,26 @@ class Main extends React.Component {
         )
     }
 
+    canvasClicked() {
+        this.setState({ currentPath: document.querySelector('#path1').getAttribute('d') })
+    }
+
     addLayer() {
-        numPaths++
+        this.state.layers.pop()
+        const oldLayer = {
+            number: this.state.numLayers,
+            path: document.querySelector('#path1').getAttribute('d')
+        }
         const newLayer = {
             number: this.state.numLayers + 1,
-            d: ''
+            path: ''
         }
         this.setState(state => ({
-            layers: state.layers.concat(newLayer),
-            numLayers: state.numLayers + 1
+            layers: state.layers.concat(oldLayer).concat(newLayer),
+            numLayers: state.numLayers + 1,
+            currentPath: ''
         }))
+        console.log(this.state.layers)
     }
 
 }
@@ -79,6 +87,7 @@ class Layer extends React.Component {
     constructor(props) {
         super(props)
         this.reset = this.reset.bind(this)
+        this.saveLayer = this.saveLayer.bind(this)
     }
 
     render() {
@@ -120,6 +129,10 @@ class Layer extends React.Component {
                 </div>
             </div>
         )
+    }
+
+    saveLayer() {
+
     }
 
     reset() {

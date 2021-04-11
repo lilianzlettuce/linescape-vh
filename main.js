@@ -19,13 +19,15 @@ var Main = function (_React$Component) {
         _this.state = {
             layers: [{
                 number: 1,
-                d: ''
+                path: ''
             }],
+            currentPath: '',
             numLayers: 1,
             saved: [],
             numSaved: 0
         };
         _this.addLayer = _this.addLayer.bind(_this);
+        _this.canvasClicked = _this.canvasClicked.bind(_this);
         return _this;
     }
 
@@ -37,7 +39,7 @@ var Main = function (_React$Component) {
                 null,
                 React.createElement(
                     'svg',
-                    { className: '', id: 'canvas', width: '700', height: '500' },
+                    { className: '', id: 'canvas', onClick: this.canvasClicked, width: '700', height: '500' },
                     this.state.layers.map(function (layer) {
                         return React.createElement(Path, { key: "path" + layer.number, number: layer.number, color: 'black', strokeWidth: '2', d: '' });
                     })
@@ -78,19 +80,30 @@ var Main = function (_React$Component) {
             );
         }
     }, {
+        key: 'canvasClicked',
+        value: function canvasClicked() {
+            this.setState({ currentPath: document.querySelector('#path1').getAttribute('d') });
+        }
+    }, {
         key: 'addLayer',
         value: function addLayer() {
-            numPaths++;
+            this.state.layers.pop();
+            var oldLayer = {
+                number: this.state.numLayers,
+                path: document.querySelector('#path1').getAttribute('d')
+            };
             var newLayer = {
                 number: this.state.numLayers + 1,
-                d: ''
+                path: ''
             };
             this.setState(function (state) {
                 return {
-                    layers: state.layers.concat(newLayer),
-                    numLayers: state.numLayers + 1
+                    layers: state.layers.concat(oldLayer).concat(newLayer),
+                    numLayers: state.numLayers + 1,
+                    currentPath: ''
                 };
             });
+            console.log(this.state.layers);
         }
     }]);
 
@@ -120,6 +133,7 @@ var Layer = function (_React$Component2) {
         var _this2 = _possibleConstructorReturn(this, (Layer.__proto__ || Object.getPrototypeOf(Layer)).call(this, props));
 
         _this2.reset = _this2.reset.bind(_this2);
+        _this2.saveLayer = _this2.saveLayer.bind(_this2);
         return _this2;
     }
 
@@ -221,6 +235,9 @@ var Layer = function (_React$Component2) {
                 )
             );
         }
+    }, {
+        key: 'saveLayer',
+        value: function saveLayer() {}
     }, {
         key: 'reset',
         value: function reset() {
