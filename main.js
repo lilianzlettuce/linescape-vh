@@ -29,14 +29,41 @@ var Main = function (_React$Component) {
             currentPath: '',
             numLayers: 1,
             saved: [{
-                name: 'among us',
+                name: 'Among Us',
+                path: 'M 180 233 Q 206 145, 294 178 Q 335 194, 368 232 Q 389 253, 429 286 Q 449 303, 418 332 Q 404 345, 350 302 Q 320 332, 299 331 Q 311 330, 323 325 Q 344 346, 359 360 Q 371 374, 348 394 Q 336 406, 283 372 Q 237 334, 211 298 Q 266 271, 280 237 Q 264 217, 222 226 Q 194 235, 195 273 Q 195 292, 211 298 Q 198 291, 194 274 Q 178 256, 181 231 Q 190 183, 234 171 Q 266 168, 296 180 Q 350 147, 391 189 Q 401 204, 398 218 Q 398 235, 387 248 Q 342 209, 320 191 Q 299 181, 291 176 Q 215 177, 245 76 Q 209 141, 206 139 Q 194 145, 179 79 Q 174 152, 177 155 Q 176 172, 130 115 Q 154 181, 167 198 Q 185 177, 206 161 Q 221 150, 242 155 Q 225 176, 167 198',
+                length: '2260.47705078125',
+                strokeWidth: '2',
+                color: 'orange',
+                number: 99
+            }, {
+                name: '',
                 path: '',
-                length: ''
+                length: '',
+                strokeWidth: '',
+                color: '',
+                number: 98
+            }, {
+                name: '',
+                path: '',
+                length: '',
+                strokeWidth: '',
+                color: '',
+                number: 97
+            }, {
+                name: '',
+                path: '',
+                length: '',
+                strokeWidth: '',
+                color: '',
+                number: 96
             }],
             numSaved: 0
         };
         _this.addLayer = _this.addLayer.bind(_this);
         _this.canvasClicked = _this.canvasClicked.bind(_this);
+        _this.toLayers = _this.toLayers.bind(_this);
+        _this.toSaved = _this.toSaved.bind(_this);
+        _this.deleteLayer = _this.deleteLayer.bind(_this);
         return _this;
     }
 
@@ -90,20 +117,30 @@ var Main = function (_React$Component) {
                                 { id: 'tab-container' },
                                 React.createElement(
                                     'button',
-                                    { className: 'tab clicked', id: 'layers-tab' },
+                                    { onClick: this.toLayers, className: 'tab clicked', id: 'layers-tab' },
                                     'Layers'
                                 ),
                                 React.createElement(
                                     'button',
-                                    { className: 'tab', id: 'saved-tab' },
+                                    { onClick: this.toSaved, className: 'tab', id: 'saved-tab' },
                                     'Saved'
                                 )
                             )
                         ),
-                        React.createElement(LayerList, { layers: this.state.layers })
+                        React.createElement(LayerList, { tab: this.state.tab, layers: this.state.layers, saved: this.state.saved })
                     )
                 )
             );
+        }
+    }, {
+        key: 'toLayers',
+        value: function toLayers() {
+            this.setState({ tab: 1 });
+        }
+    }, {
+        key: 'toSaved',
+        value: function toSaved() {
+            this.setState({ tab: 2 });
         }
     }, {
         key: 'canvasClicked',
@@ -132,6 +169,19 @@ var Main = function (_React$Component) {
             });
             console.log(this.state.layers);
         }
+    }, {
+        key: 'deleteLayer',
+        value: function deleteLayer(num) {
+            var half1 = this.state.layers.slice(0, num - 1);
+            var half2 = this.state.layers.slice(num);
+            this.setState(function (state) {
+                return {
+                    layers: half1.concat(half2),
+                    numLayers: state.numLayers + 1,
+                    currentPath: ''
+                };
+            });
+        }
     }]);
 
     return Main;
@@ -142,20 +192,20 @@ function Path(props) {
 }
 
 function LayerList(props) {
-    if (1 === 1) {
+    if (props.tab === 1) {
         return React.createElement(
             'div',
             { className: 'layers-container' },
             props.layers.map(function (layer) {
-                return React.createElement(Layer, { key: "layer" + layer.number, number: layer.number });
+                return React.createElement(Layer, { key: "layer" + layer.number, number: layer.number, deleteLayer: props.deleteLayer });
             })
         );
     } else {
         return React.createElement(
             'div',
             { className: 'layers-container' },
-            props.layers.map(function (layer) {
-                return React.createElement(Layer, { key: "layer" + layer.number, number: layer.number });
+            props.saved.map(function (thing) {
+                return React.createElement(Saved, { key: "saved" + thing.number, number: thing.number, name: thing.name, path: thing.path, strokeWidth: thing.strokeWidth, length: thing.length, color: thing.color });
             })
         );
     }
@@ -212,12 +262,7 @@ var Layer = function (_React$Component2) {
                 React.createElement(
                     'div',
                     { className: 'btn-box' },
-                    React.createElement(
-                        'h2',
-                        null,
-                        'Layer #',
-                        this.props.number
-                    ),
+                    React.createElement('input', { className: 'h2-input', defaultValue: "Layer #" + this.props.number, type: 'text' }),
                     React.createElement(
                         'div',
                         { className: 'btn-box2' },
@@ -333,13 +378,13 @@ var Saved = function (_React$Component3) {
         value: function render() {
             return React.createElement(
                 'div',
-                { id: "saved" + this.props.number, className: 'layer' },
+                { id: "saved" + this.props.number, className: 'layer saveLayer' },
                 React.createElement(
                     'div',
                     { className: 'btn-box' },
                     React.createElement(
                         'h2',
-                        null,
+                        { className: '' },
                         this.props.name
                     ),
                     React.createElement(
@@ -365,8 +410,18 @@ var Saved = function (_React$Component3) {
                         ),
                         React.createElement(
                             'button',
-                            { className: 'copyLength', onClick: this.copyLength, id: "copyLengthBtn" + this.props.number },
+                            { className: 'copyLength', onClick: this.copyLength, id: "clBtn" + this.props.number },
                             React.createElement('i', { className: 'far fa-copy' })
+                        ),
+                        React.createElement(
+                            'h3',
+                            { className: 'h3-margin-left' },
+                            'SVG Coordinates'
+                        ),
+                        React.createElement(
+                            'button',
+                            { className: 'copyCoords', onClick: this.copyCoords, id: "ccBtn" + this.props.number },
+                            React.createElement('i', { className: 'fas fa-copy' })
                         )
                     )
                 ),
@@ -376,16 +431,8 @@ var Saved = function (_React$Component3) {
                     React.createElement(
                         'div',
                         { className: 'coords-heading' },
-                        React.createElement(
-                            'h3',
-                            null,
-                            'SVG Coordinates'
-                        ),
-                        React.createElement(
-                            'button',
-                            { className: 'copyCoords', onClick: this.copyCoords, id: "copyCoordsBtn" + this.props.number },
-                            React.createElement('i', { className: 'fas fa-copy' })
-                        )
+                        React.createElement('input', { readOnly: true, value: this.props.length, className: 'small-input', id: "CL" + this.props.number }),
+                        React.createElement('input', { readOnly: true, value: this.props.path, className: 'small-input', id: "CC" + this.props.number })
                     )
                 ),
                 React.createElement(
@@ -404,7 +451,7 @@ var Saved = function (_React$Component3) {
     }, {
         key: 'copyCoords',
         value: function copyCoords() {
-            document.querySelector("#text-display" + this.props.number).select();
+            document.querySelector("#CC" + this.props.number).select();
             document.execCommand("copy");
         }
 
@@ -413,7 +460,7 @@ var Saved = function (_React$Component3) {
     }, {
         key: 'copyLength',
         value: function copyLength() {
-            document.querySelector("#strokeLength" + this.props.number).select();
+            document.querySelector("#CL" + this.props.number).select();
             document.execCommand("copy");
         }
     }]);
