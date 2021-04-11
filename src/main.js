@@ -23,7 +23,9 @@ class Main extends React.Component {
         return (
             <div>
                 <svg className="" id="canvas" width="700" height="500">
-                    <Path number="1" color="black" strokeWidth="2" d="" />
+                    {this.state.layers.map(layer => (
+                        <Path key={"path" + layer.number} number={layer.number} color="black" strokeWidth="2" d="" />
+                    ))}
                 </svg>
                 <div id="section">
                     <div id="filler"></div>
@@ -77,16 +79,16 @@ function List(props) {
 function Layer(props) {
     return (
         <div id={"layer" + props.number} className="layer">
-            <div className="btn-box">
+            <div className="btn-box btn-box-top">
                 <button className="reset" id={"resetBtn" + props.number}>Reset</button>
-                <button className="animate" id={"animateBtn" + props.number}>Animate</button>
+                <button className="save" id={"saveLayerBtn" + props.number}>Save</button>
                 <button className="hide" id={"hideBtn" + props.number}>Hide</button>
                 <button className="remove" id={"removeBtn" + props.number}>Remove</button>
             </div>
             <div className="btn-box">
                 <h2>Layer #{props.number}</h2>
-                <div>
-                    <button className="save" id={"saveLayerBtn" + props.number}>Save</button>
+                <div className="btn-box2">
+                    <button className="animate" id={"animateBtn" + props.number}>Animate</button>
                     <button className="genNew" id={"genNewBtn" + props.number}>New Scribble</button>
                 </div>
             </div>

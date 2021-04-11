@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //update values
     function updateVals() {
-        d = path.getAttribute('d')
         text = document.querySelector('#text-display1')
         lengthText = document.querySelector('#strokeLength')
         color = document.querySelector('#color-input1').value
@@ -53,6 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         updateVals()
+        d = path.getAttribute('d')
         text.value = d
     })
 
@@ -78,6 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
             down = false
 
             updateVals()
+            d = path.getAttribute('d')
             text.value = d
             lengthText.value = length;
         } else if (e.code === 'Enter') {    //set new stroke color/thickness
@@ -119,6 +120,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         return 0
     }
+
+
 
     //erase all path
     document.querySelector('#resetBtn1').addEventListener('click', () => {
@@ -197,20 +200,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }, animTime * 1000);
     })
 
-    //squiggly creator
-    function createSquiggly(id, startX, startY, width, height, number, up) {
-        let d = `M ${startX} ${startY} `
-        if (up) {
-            d += `Q ${startX + width / 2} ${startY - height}, ${startX + width} ${startY} `
-        } else {
-            d += `Q ${startX + width / 2} ${startY + height}, ${startX + width} ${startY} `
-        }
-        for (let i = 2; i <= number; i++) {
-            d += `T ${startX + width * i} ${startY} `
-        }
-        document.querySelector(id).setAttribute('d', d)
-    }
-
     //scribble creator
     function createScribble(id, startX, startY, density, size, width, height) {
         let d = `M ${startX} ${startY} Q ${startX + 5} ${startY + 5}, ${startX - 5} ${startY} `
@@ -247,7 +236,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (size != '') {
             scribbleSize = size
         }
-        console.log(size)
         createScribble('#path1', 450, 300, 1, scribbleSize, 4, 4)
     }) 
     

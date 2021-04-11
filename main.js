@@ -38,7 +38,9 @@ var Main = function (_React$Component) {
                 React.createElement(
                     'svg',
                     { className: '', id: 'canvas', width: '700', height: '500' },
-                    React.createElement(Path, { number: '1', color: 'black', strokeWidth: '2', d: '' })
+                    this.state.layers.map(function (layer) {
+                        return React.createElement(Path, { key: "path" + layer.number, number: layer.number, color: 'black', strokeWidth: '2', d: '' });
+                    })
                 ),
                 React.createElement(
                     'div',
@@ -116,7 +118,7 @@ function Layer(props) {
         { id: "layer" + props.number, className: 'layer' },
         React.createElement(
             'div',
-            { className: 'btn-box' },
+            { className: 'btn-box btn-box-top' },
             React.createElement(
                 'button',
                 { className: 'reset', id: "resetBtn" + props.number },
@@ -124,8 +126,8 @@ function Layer(props) {
             ),
             React.createElement(
                 'button',
-                { className: 'animate', id: "animateBtn" + props.number },
-                'Animate'
+                { className: 'save', id: "saveLayerBtn" + props.number },
+                'Save'
             ),
             React.createElement(
                 'button',
@@ -149,11 +151,11 @@ function Layer(props) {
             ),
             React.createElement(
                 'div',
-                null,
+                { className: 'btn-box2' },
                 React.createElement(
                     'button',
-                    { className: 'save', id: "saveLayerBtn" + props.number },
-                    'Save'
+                    { className: 'animate', id: "animateBtn" + props.number },
+                    'Animate'
                 ),
                 React.createElement(
                     'button',

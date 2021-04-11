@@ -75,6 +75,13 @@ textarea{
     width: 100%;
 }
 
+.btn-box2{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 60%;
+}
+
 button{
     outline: none;
     border: none;
@@ -244,6 +251,9 @@ button:active{
     }
     .layers-container{
         margin-top: 3rem !important;
+    }
+    .btn-box-top{
+        justify-content: flex-end;
     }
 }
 
