@@ -26,7 +26,9 @@ class Main extends React.Component {
                     length: '2260.47705078125',
                     strokeWidth: '2',
                     color: 'orange',
-                    number: 99
+                    number: 99,
+                    isScribble: false,
+                    animTime: 5,
                 },
                 {
                     name: '',
@@ -34,7 +36,9 @@ class Main extends React.Component {
                     length: '',
                     strokeWidth: '',
                     color: '',
-                    number: 98
+                    number: 98,
+                    isScribble: false,
+                    animTime: 5,
                 },
                 {
                     name: '',
@@ -42,7 +46,9 @@ class Main extends React.Component {
                     length: '',
                     strokeWidth: '',
                     color: '',
-                    number: 97
+                    number: 97,
+                    isScribble: false,
+                    animTime: 5,
                 },
                 {
                     name: '',
@@ -50,7 +56,9 @@ class Main extends React.Component {
                     length: '',
                     strokeWidth: '',
                     color: '',
-                    number: 96
+                    number: 96,
+                    isScribble: false,
+                    animTime: 5,
                 }
             ],
             numSaved: 0,
@@ -155,7 +163,7 @@ function LayerList(props) {
         return (
             <div className="layers-container">
                 {props.saved.map(thing => (
-                    <Saved key={"saved" + thing.number} number={thing.number} name={thing.name} path={thing.path} strokeWidth={thing.strokeWidth} length={thing.length} color={thing.color} />
+                    <Saved key={"saved" + thing.number} number={thing.number} name={thing.name} path={thing.path} strokeWidth={thing.strokeWidth} length={thing.length} color={thing.color} isScribble={thing.isScribble} animTime={thing.animTime} />
                 ))}
             </div>
         )
@@ -212,10 +220,6 @@ class Layer extends React.Component {
                 </div>
             </div>
         )
-    }
-
-    saveLayer() {
-
     }
 
     hideLayer() {
@@ -291,7 +295,24 @@ class Saved extends React.Component {
     }
 
     animate() {
-
+        console.log('bleh')
+        let path = document.querySelector('#p' + this.props.number)
+        if (!this.props.isScribble) {
+            path.style.strokeDasharray = this.props.length
+            path.style.strokeDashoffset = this.props.length
+            path.style.transition = ''
+            setTimeout(() => {
+                path.style.transition = `stroke-dashoffset ${animTime}s linear`
+                path.style.strokeDashoffset = 0
+            }, 100);
+            setTimeout(() => {
+                path.style.transition = ''
+            }, animTime * 1000);
+        } else {
+            path.style.strokeDasharray = length / 13
+            path.style.strokeDashoffset = length
+            path.style.animation = `scribble ${this.props.animTime * 6}s linear infinite alternate`
+        }
     }
 
     //copy path coords
