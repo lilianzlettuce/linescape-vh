@@ -2,8 +2,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //get drawing elements
     let canvas = document.querySelector('#canvas')
-    let path = document.querySelector('#path1')
+    let path = document.querySelector('#path')
     let d = path.getAttribute('d')
+    let layerNum = 1
 
     //variables for canvas & path drawing
     let firstClick = true
@@ -115,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //button and input elements
     //let path = document.querySelector('#path1')
     let text = document.querySelector('#text-display1')
-    let lengthText = document.querySelector('#strokeLength')
+    let lengthText = document.querySelector('#strokeLength1')
     let color = document.querySelector('#color-input1').value
     let width = document.querySelector('#strokeWidth-input1').value
     let speed = document.querySelector('#animation-input1').value
@@ -123,12 +124,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //update values
     function updateVals() {
-        text = document.querySelector('#text-display1')
-        lengthText = document.querySelector('#strokeLength')
-        color = document.querySelector('#color-input1').value
-        width = document.querySelector('#strokeWidth-input1').value
-        speed = document.querySelector('#animation-input1').value
-        size = document.querySelector('#size-input1').value
+        text = document.querySelector(`#text-display${layerNum}`)
+        lengthText = document.querySelector(`#strokeLength${layerNum}`)
+        color = document.querySelector(`#color-input${layerNum}`).value
+        width = document.querySelector(`#strokeWidth-input${layerNum}`).value
+        speed = document.querySelector(`#animation-input${layerNum}`).value
+        size = document.querySelector(`#size-input${layerNum}`).value
     }
 
     //erase all path
@@ -149,13 +150,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     })
 
+    //new layer
+    document.querySelector('#addLayerBtn').addEventListener('click', () => {
+        firstClick = true
+        numLines = 0
+        down = false
+        length = 0
+        isScribble = false
+        layerNum++
+    })
+
     //copy path coords
-    document.querySelector('#copyCoordsBtn').addEventListener('click', () => {
+    document.querySelector(`#copyCoordsBtn${layerNum}`).addEventListener('click', () => {
         text.select()
         document.execCommand("copy")
     })
     //copy path length
-    document.querySelector('#copyLengthBtn').addEventListener('click', () => {
+    document.querySelector(`#copyLengthBtn${layerNum}`).addEventListener('click', () => {
         lengthText.select();
         document.execCommand("copy")
     })
@@ -169,7 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateVals()
 
     //animate path
-    document.querySelector('#animateBtn1').addEventListener('click', () => {
+    document.querySelector(`#animateBtn${layerNum}`).addEventListener('click', () => {
         updateVals()
         if (color != '') {
             path.style.stroke = color
@@ -229,7 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let scribbleSize = 70
     //add functionality to generate scribble btn
-    document.querySelector('#genNewBtn1').addEventListener('click', () => {
+    document.querySelector(`#genNewBtn${layerNum}`).addEventListener('click', () => {
         path.style.strokeDasharray = ''
         path.style.strokeDashoffset = ''
         path.style.animation = ''
@@ -237,7 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (size != '') {
             scribbleSize = size
         }
-        createScribble('#path1', 450, 300, 1, scribbleSize, 4, 4)
+        createScribble('#path', 450, 300, 1, scribbleSize, 4, 4)
         length = path.getTotalLength()
         lengthText.value = length
         d = path.getAttribute('d')

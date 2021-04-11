@@ -21,6 +21,10 @@ var Main = function (_React$Component) {
                 number: 1,
                 path: ''
             }],
+            paths: [{
+                number: '',
+                d: ''
+            }],
             currentPath: '',
             numLayers: 1,
             saved: [],
@@ -40,8 +44,8 @@ var Main = function (_React$Component) {
                 React.createElement(
                     'svg',
                     { className: '', id: 'canvas', onClick: this.canvasClicked, width: '700', height: '500' },
-                    this.state.layers.map(function (layer) {
-                        return React.createElement(Path, { key: "path" + layer.number, number: layer.number, color: 'black', strokeWidth: '2', d: '' });
+                    this.state.paths.map(function (path) {
+                        return React.createElement(Path, { key: "path" + path.number, number: path.number, color: 'black', strokeWidth: '2', d: path.d });
                     })
                 ),
                 React.createElement(
@@ -82,23 +86,35 @@ var Main = function (_React$Component) {
     }, {
         key: 'canvasClicked',
         value: function canvasClicked() {
-            this.setState({ currentPath: document.querySelector('#path1').getAttribute('d') });
+            this.setState({ currentPath: document.querySelector('#path').getAttribute('d') });
         }
     }, {
         key: 'addLayer',
         value: function addLayer() {
-            this.state.layers.pop();
             var oldLayer = {
                 number: this.state.numLayers,
-                path: document.querySelector('#path1').getAttribute('d')
+                path: document.querySelector('#path').getAttribute('d')
             };
             var newLayer = {
                 number: this.state.numLayers + 1,
                 path: ''
             };
+
+            var oldPath = {
+                number: this.state.numLayers,
+                d: document.querySelector('#path').getAttribute('d')
+            };
+            var newPath = {
+                number: '',
+                d: ''
+            };
+
+            this.state.layers.pop();
+            this.state.paths.pop();
             this.setState(function (state) {
                 return {
                     layers: state.layers.concat(oldLayer).concat(newLayer),
+                    paths: state.paths.concat(oldPath).concat(newPath),
                     numLayers: state.numLayers + 1,
                     currentPath: ''
                 };
@@ -194,10 +210,10 @@ var Layer = function (_React$Component2) {
                         )
                     )
                 ),
-                React.createElement('input', { type: 'text', id: 'color-input1', placeholder: 'Color' }),
-                React.createElement('input', { type: 'number', id: 'strokeWidth-input1', placeholder: 'Stroke width' }),
-                React.createElement('input', { type: 'number', id: 'animation-input1', placeholder: 'Animation Speed' }),
-                React.createElement('input', { type: 'number', id: 'size-input1', placeholder: 'Scribble size' }),
+                React.createElement('input', { type: 'text', id: "color-input" + this.props.number, placeholder: 'Color' }),
+                React.createElement('input', { type: 'number', id: "strokeWidth-input" + this.props.number, placeholder: 'Stroke width' }),
+                React.createElement('input', { type: 'number', id: "animation-input" + this.props.number, placeholder: 'Animation Speed' }),
+                React.createElement('input', { type: 'number', id: "size-input" + this.props.number, placeholder: 'Scribble size' }),
                 React.createElement(
                     'div',
                     { className: 'length-container' },
@@ -211,11 +227,11 @@ var Layer = function (_React$Component2) {
                         ),
                         React.createElement(
                             'button',
-                            { className: 'copyLength', id: 'copyLengthBtn' },
+                            { className: 'copyLength', id: "copyLengthBtn" + this.props.number },
                             React.createElement('i', { className: 'far fa-copy' })
                         )
                     ),
-                    React.createElement('input', { readOnly: true, type: 'number', id: 'strokeLength', className: 'length-input' })
+                    React.createElement('input', { readOnly: true, type: 'number', id: "strokeLength" + this.props.number, className: 'length-input' })
                 ),
                 React.createElement(
                     'div',
@@ -230,11 +246,11 @@ var Layer = function (_React$Component2) {
                         ),
                         React.createElement(
                             'button',
-                            { className: 'copyCoords', id: 'copyCoordsBtn' },
+                            { className: 'copyCoords', id: "copyCoordsBtn" + this.props.number },
                             React.createElement('i', { className: 'fas fa-copy' })
                         )
                     ),
-                    React.createElement('textarea', { id: 'text-display1', name: 'paragraph_text', cols: '50', rows: '10' })
+                    React.createElement('textarea', { id: "text-display" + this.props.number, name: 'paragraph_text', cols: '50', rows: '10' })
                 )
             );
         }
@@ -245,12 +261,12 @@ var Layer = function (_React$Component2) {
         key: 'hideLayer',
         value: function hideLayer() {
             if (!this.state.hideClicked) {
-                document.querySelector('#path1').style.opacity = '0%';
+                document.querySelector('#path').style.opacity = '0%';
                 document.querySelector("#hideBtn" + this.props.number).style.backgroundColor = 'rgb(92, 92, 92)';
                 document.querySelector("#hideBtn" + this.props.number).style.color = 'white';
                 this.setState({ hideClicked: true });
             } else {
-                document.querySelector('#path1').style.opacity = '100%';
+                document.querySelector('#path').style.opacity = '100%';
                 document.querySelector("#hideBtn" + this.props.number).style.backgroundColor = 'white';
                 document.querySelector("#hideBtn" + this.props.number).style.color = 'rgb(92, 92, 92)';
                 this.setState({ hideClicked: false });
