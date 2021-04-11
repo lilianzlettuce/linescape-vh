@@ -186,8 +186,8 @@ class Layer extends React.Component {
             <div id={"layer" + this.props.number} className="layer">
                 <div className="btn-box btn-box-top">
                     <button className="reset" id={"resetBtn" + this.props.number} >Reset</button>
-                    <button className="save" id={"saveLayerBtn" + this.props.number}>Save</button>
                     <button className="hide" id={"hideBtn" + this.props.number} onClick={this.hideLayer}>Hide</button>
+                    <button className="save" id={"saveLayerBtn" + this.props.number}>Save</button>
                     <button className="remove" id={"removeBtn" + this.props.number}>Remove</button>
                 </div>
                 <div className="btn-box">
@@ -267,8 +267,8 @@ class Saved extends React.Component {
                 <div className="btn-box">
                     <h2 className="longer-h2">{this.props.name}</h2>
                     <div className="btn-box2">
-                    <button className="show" id={"ani" + this.props.number} onClick={this.deanimate}>Hide</button>
                         <button className="show" id={"ani" + this.props.number} onClick={this.animate}>Show</button>
+                    <button className="genNew" id={"ani" + this.props.number} onClick={this.deanimate}>Hide</button>
                     </div>
                 </div>
     

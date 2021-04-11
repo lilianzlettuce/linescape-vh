@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     //erase all path
-    document.querySelector('#resetBtn1').addEventListener('click', resetFunc)
+    document.querySelector('#resetBtn' + layerNum).addEventListener('click', resetFunc)
     function resetFunc() {
         firstClick = true
         numLines = 0

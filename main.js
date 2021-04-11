@@ -47,11 +47,11 @@ var Main = function (_React$Component) {
                 isScribble: true,
                 animTime: 3
             }, {
-                name: '',
-                path: '',
-                length: '',
-                strokeWidth: '',
-                color: '',
+                name: 'Wolf',
+                path: 'M 506 470 Q 413 343, 475 290  Q 532 253, 482 218    Q 471 208, 498 211  Q 515 212, 524 199  Q 525 190, 546 192  Q 551 192, 566 163    Q 575 168, 576 179  Q 576 199, 574 199  Q 587 195, 588 186  Q 589 182, 594 190  Q 595 194, 591 201      Q 581 213, 566 233  Q 549 254, 564 296  Q 590 350, 551 426  Q 543 448, 568 500    Q 485 264, 306 500              Q 303 438, 331 401  Q 354 361, 349 342  Q 341 320, 313 330    Q 294 341, 269 345  Q 228 347, 208 324      Q 272 431, 344 333  Q 367 308, 388 302  Q 418 295, 433 325  Q 440 351, 398 406  Q 374 446, 362 451 Q 364 477, 382 491 ',
+                length: '1989.8394775390625',
+                strokeWidth: '1',
+                color: 'black',
                 number: 97,
                 isScribble: false,
                 animTime: 5
@@ -252,13 +252,13 @@ var Layer = function (_React$Component2) {
                     ),
                     React.createElement(
                         'button',
-                        { className: 'save', id: "saveLayerBtn" + this.props.number },
-                        'Save'
+                        { className: 'hide', id: "hideBtn" + this.props.number, onClick: this.hideLayer },
+                        'Hide'
                     ),
                     React.createElement(
                         'button',
-                        { className: 'hide', id: "hideBtn" + this.props.number, onClick: this.hideLayer },
-                        'Hide'
+                        { className: 'save', id: "saveLayerBtn" + this.props.number },
+                        'Save'
                     ),
                     React.createElement(
                         'button',
@@ -397,13 +397,13 @@ var Saved = function (_React$Component3) {
                         { className: 'btn-box2' },
                         React.createElement(
                             'button',
-                            { className: 'show', id: "ani" + this.props.number, onClick: this.deanimate },
-                            'Hide'
+                            { className: 'show', id: "ani" + this.props.number, onClick: this.animate },
+                            'Show'
                         ),
                         React.createElement(
                             'button',
-                            { className: 'show', id: "ani" + this.props.number, onClick: this.animate },
-                            'Show'
+                            { className: 'genNew', id: "ani" + this.props.number, onClick: this.deanimate },
+                            'Hide'
                         )
                     )
                 ),
