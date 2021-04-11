@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let offSetX = 0
     let offSetY = 0
     let length = path.getTotalLength()
+    let isScribble = false
 
     //setting path points
     canvas.addEventListener('click', (e) => {
@@ -243,7 +244,6 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(d)
     }
 
-    let isScribble = false
     let scribbleSize = 70
     //add functionality to generate scribble btn
     document.querySelector('#genNewBtn1').addEventListener('click', () => {
