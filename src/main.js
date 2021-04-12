@@ -66,7 +66,7 @@ class Main extends React.Component {
                     length: '2107.392578125',
                     strokeWidth: '1',
                     color: 'black',
-                    number: 96,
+                    number: 95,
                     isScribble: false,
                     animTime: 6,
                 }
