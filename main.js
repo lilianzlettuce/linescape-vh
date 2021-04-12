@@ -64,6 +64,15 @@ var Main = function (_React$Component) {
                 number: 96,
                 isScribble: false,
                 animTime: 6
+            }, {
+                name: 'S',
+                path: 'M 374 182 Q 415 183, 415 181  Q 415 140, 385 118      Q 353 100, 318 117    Q 287 136, 284 179  Q 286 231, 340 245  Q 386 253, 379 289  Q 373 311, 335 300  Q 313 293, 314 264  Q 285 261, 281 263  Q 281 328, 336 339  Q 374 339, 393 328  Q 418 304, 410 254    Q 401 211, 347 203  Q 324 197, 323 176      Q 323 163, 334 150  Q 344 141, 360 144  Q 373 147, 375 161  Q 376 182, 374 182 ',
+                length: '2107.392578125',
+                strokeWidth: '1',
+                color: 'black',
+                number: 96,
+                isScribble: false,
+                animTime: 6
             }],
             numSaved: 0
         };
