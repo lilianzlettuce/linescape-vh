@@ -212,7 +212,8 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
     //animation vars
-    let animTime = 6let U = 'M 445 121 Q 442 268, 448 290    Q 452 313, 556 307  Q 586 310, 571 116  Q 542 115, 537 115  Q 536 238, 536 251  Q 536 269, 487 270  Q 467 263, 481 118  Q 444 121, 444 121 '
+    let animTime = 6
+    let U = 'M 445 121 Q 442 268, 448 290    Q 452 313, 556 307  Q 586 310, 571 116  Q 542 115, 537 115  Q 536 238, 536 251  Q 536 269, 487 270  Q 467 263, 481 118  Q 444 121, 444 121 '
     //path.setAttribute('d', U)
     updateVals()
 
