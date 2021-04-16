@@ -33,9 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('#logoutBtn').addEventListener('click', () => {
         firebase.auth().signOut()
         let loginPage = document.querySelector('#login-page')
-        loginPage.classList.remove('disappearSlow')
-        loginPage.classList.add('appearSlow')
-        loginPage.style.zIndex = 500
+        loginPage.style.left = '0'
+        loginPage.style.opacity = '100%'
     })**/
 
     //get drawing elements
